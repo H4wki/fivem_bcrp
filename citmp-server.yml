@@ -20,6 +20,7 @@ AutoStartResources:
     - nocarjack
     - lux_vehcontrol
     - gui_speedometer
+    - radar
 
 # do change
 RconPassword: wtf231
