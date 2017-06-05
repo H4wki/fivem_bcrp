@@ -32,16 +32,16 @@ function tvRP.spawnGarageVehicle(vtype,name) -- vtype is the vehicle type (one v
       SetEntityInvincible(nveh,false)
       SetPedIntoVehicle(GetPlayerPed(-1),nveh,-1) -- put player inside
       SetVehicleNumberPlateText(nveh, "P "..tvRP.getRegistrationNumber())
-      Citizen.InvokeNative(0xAD738C3085FE7E11, nveh, true, true)
+      SetEntityAsMissionEntity(nveh, true, true) --this is mandatory in order to retrieve the network ID
 
-      vehicles[vtype] = {vtype,name,nveh} -- set current vehicule
+      vehicles[vtype] = {vtype,name,nveh} -- set current Vehicle
 
       SetModelAsNoLongerNeeded(mhash)
       vehNetworkId = GetNetworkIdFromEntity(nveh) --get our networkID because the vehicle is now persistent
       TriggerClientEvent('nocarjack:addOwnedVehicle', ped, vehNetworkId) --Send the networkID to the player
     end
   else
-    tvRP.notify("You can only have one "..vtype.." vehicule out.")
+    tvRP.notify("You can only have one "..vtype.." Vehicle out.")
   end
 end
 
@@ -51,7 +51,7 @@ function tvRP.despawnGarageVehicle(vtype,max_range)
     local x,y,z = table.unpack(GetEntityCoords(vehicle[3],true))
     local px,py,pz = tvRP.getPosition()
 
-    if GetDistanceBetweenCoords(x,y,z,px,py,pz,true) < max_range then -- check distance with the vehicule
+    if GetDistanceBetweenCoords(x,y,z,px,py,pz,true) < max_range then -- check distance with the Vehicle
       -- remove vehicle
       Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle[3]))
       vehicles[vtype] = nil
@@ -98,7 +98,7 @@ function tvRP.getOwnedVehiclePosition()
   return false,0,0,0
 end
 
--- return ok, vehicule network id
+-- return ok, Vehicle network id
 function tvRP.getOwnedVehicleId(vtype)
   local vehicle = vehicles[vtype]
   if vehicle then
