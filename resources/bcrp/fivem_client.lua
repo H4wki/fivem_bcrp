@@ -43,7 +43,6 @@ Citizen.CreateThread(function()
 			ClearPedTasks(ped);
 			playing_emote = false
 		end
-		Menu.renderGUI()
 	end
 end)
 
