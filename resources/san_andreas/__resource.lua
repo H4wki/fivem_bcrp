@@ -1,3 +1,3 @@
-resource_type 'map' { name = 'San Andreas', gameTypes = { fivem = true } }
+resource_type 'map' { name = 'San Andreas', gameTypes = { bcrp = true } }
 
 map 'map.lua'

@@ -85,7 +85,7 @@ local main_menu_builds = {}
 
 -- open the player main menu
 function vRP.openMainMenu(source)
-  local menudata = {name="Main menu",css={top="75px",header_color="rgba(0,125,255,0.75)"}}
+  local menudata = {name="Main Menu",css={top="75px",header_color="rgba(0,125,255,0.75)"}}
   main_menu_builds[source] = menudata
 
   TriggerEvent("vRP:buildMainMenu",source) -- all resources can add choices to the menu using vRP.buildMainMenu(player,choices)

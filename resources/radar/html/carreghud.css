@@ -11,10 +11,10 @@ html, body {
 .reghud {
     border-radius: 5%;
     width: 200px;
-    height: 150px;
-	background-image: url("background.png");
+    height: 116px;
+	background-image: url("backgroundv2.png");
     background-color:rgba(0, 0, 0, 0.85);
-    border: 3px solid gray;
+    border: 2px solid gray;
 }
 
 p {
@@ -34,24 +34,24 @@ p {
 
 .carSpeedLine1 {
     position: absolute;
-	bottom: 60px;
+	bottom: 28px;
 	right: 75px;
-	color: 00fff1;
+	color: FF0000;
     font-size: 80px;
 }
 
 .carSpeedLine2 {
     position: absolute;
-    bottom: 114px;
+    bottom: 82px;
     right: 1px;
-    color: 00fff1;
+    color: FF0000;
     font-size: 36px;
 }
 
 .carRegLine1 {
     position: absolute;
-    bottom: 9px;
+    bottom: 1px;
     right: 63px;
-    color: 00fff1;
+    color: FF0000;
     font-size: 36px;
 }

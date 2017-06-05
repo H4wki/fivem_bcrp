@@ -16,50 +16,112 @@ local zones = { ['AIRP'] = "Los Santos International Airport", ['ALAMO'] = "Alam
 
 local directions = { [0] = 'N', [45] = 'NW', [90] = 'W', [135] = 'SW', [180] = 'S', [225] = 'SE', [270] = 'E', [315] = 'NE', [360] = 'N', } 
 
+local ranks = {
+	{rank = 1, tag = "~b~Mod"},
+	{rank = 3, tag = "~r~Admin"},
+	{rank = 5, tag = "~r~Head-Admin"},
+	{rank = 7, tag = "~y~Dev"}
+}
+
+
+
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(1)
+
 		local pos = GetEntityCoords(GetPlayerPed(-1))
 		local var1, var2 = GetStreetNameAtCoord(pos.x, pos.y, pos.z, Citizen.ResultAsInteger(), Citizen.ResultAsInteger())
 
 		for k,v in pairs(directions)do
-			direction = GetEntityHeading(GetPlayerPed())
+			direction = GetEntityHeading(GetPlayerPed(-1))
 			if(math.abs(direction - k) < 22.5)then
 				direction = v
 				break;
 			end
 		end
 
+		local posme = GetEntityCoords(GetPlayerPed(-1), false)
+
+		for i = 0,32 do
+			if(NetworkIsPlayerActive(i) and GetPlayerPed(i) ~= GetPlayerPed(-1))then
+				if(HasEntityClearLosToEntity(GetPlayerPed(-1), GetPlayerPed(i), 17) and IsEntityVisible(GetPlayerPed(i)))then
+					local pos = GetOffsetFromEntityInWorldCoords(GetPlayerPed(i), 0, 0, 1.4)
+					
+					if(Vdist(pos.x, pos.y, pos.z, posme.x, posme.y, posme.z) < 10.0)then
+						local x,y,z = World3dToScreen2d(pos.x, pos.y, pos.z)
+
+						SetTextFont(11)
+						SetTextScale(0.0, 0.40)
+						SetTextColour(255, 255, 255, 255);
+						SetTextDropShadow(5, 0, 78, 255, 255);
+						SetTextEdge(0, 0, 0, 0, 0);
+						SetTextEntry("STRING");
+						SetTextCentre(1)
+						AddTextComponentString(GetPlayerServerId(i) .. " | " .. GetPlayerName(i))
+						DrawText(y, z)
+
+						if(DecorExistOn(GetPlayerPed(i), 'rank'))then
+							local rank = DecorGetInt(GetPlayerPed(i), 'rank')
+							if(rank ~= false)then
+								pos = GetOffsetFromEntityInWorldCoords(GetPlayerPed(i), 0, 0, 1.6)
+								x,y,z = World3dToScreen2d(pos.x, pos.y, pos.z)
+
+								SetTextFont(11)
+								SetTextScale(0.0, 0.40)
+								SetTextColour(255, 255, 255, 255);
+								SetTextDropShadow(5, 0, 78, 255, 255);
+								SetTextEdge(0, 0, 0, 0, 0);
+								SetTextEntry("STRING");
+								SetTextCentre(1)
+								
+								local tag = ""
+								for e,c in ipairs(ranks)do
+									if(rank >= c.rank)then
+										tag = c.tag
+									end
+								end
+								AddTextComponentString("" .. tag)
+								DrawText(y, z)
+								SetTextOutline()	
+							end						
+						end
+					end
+				end
+			end
+		end
+
 		if(var2 ~= 0)then
-			drawTxt(0.515, 1.22, 1.0,1.0,0.4, "~w~[~y~" .. tostring(GetStreetNameFromHashKey(var2)) .. "~w~]", 255, 255, 255, 255)
+			drawTxt(0.555, 1.25, 1.0,1.0,0.4, "Crossing ~y~" .. tostring(GetStreetNameFromHashKey(var2)) .. "~w~", 255, 255, 255, 255)
 		end
 
 		if(GetStreetNameFromHashKey(var1) and GetNameOfZone(pos.x, pos.y, pos.z))then
 			if(zones[GetNameOfZone(pos.x, pos.y, pos.z)] and tostring(GetStreetNameFromHashKey(var1)))then
-				drawTxt(0.515, 1.25, 1.0,1.0,0.4, direction .. "~b~ | ~y~" .. tostring(GetStreetNameFromHashKey(var1)) .. " ~w~/ ~y~" .. zones[GetNameOfZone(pos.x, pos.y, pos.z)], 255, 255, 255, 255)
+				drawTxt(0.555, 1.22, 1.0,1.0,0.4, "~b~" .. tostring(GetStreetNameFromHashKey(var1)) .. " ~w~in ~y~" .. zones[GetNameOfZone(pos.x, pos.y, pos.z)], 255, 255, 255, 255)
+			end
+		end
+
+		if(direction)then
+			if(#direction == 1)then
+				drawTxt(0.515, 1.2195, 1.0, 1.0, 0.9, direction, 255, 255, 255, 255)
+			else
+				drawTxt(0.515, 1.2195, 1.0, 1.0, 0.9, string.sub(direction, 1,1), 255, 255, 255, 255)
+				drawTxt(0.535, 1.2395, 1.0, 1.0, 0.5, string.sub(direction, 2), 255, 255, 255, 255)
 			end
 		end
 
 		local t = 0
-			for i = 0,32 do
-				if(GetPlayerName(i))then
-					if(NetworkIsPlayerTalking(i))then
-						t = t + 1
+		for i = 0,32 do
+			if(GetPlayerName(i))then
+				if(NetworkIsPlayerTalking(i))then
+					t = t + 1
 
-						if(t == 1)then
-								drawTxt(0.515, 0.95, 1.0,1.0,0.4, "~y~Talking", 255, 255, 255, 255)
-						end
-
-						drawTxt(0.520, 0.95 + (t * 0.023), 1.0,1.0,0.4, "" .. GetPlayerName(i), 255, 255, 255, 255)
+					if(t == 1)then
+							drawTxt(0.515, 0.95, 1.0,1.0,0.4, "~y~Talking", 255, 255, 255, 255)
 					end
+
+					drawTxt(0.520, 0.95 + (t * 0.023), 1.0,1.0,0.4, GetPlayerServerId(i) .. " | " .. GetPlayerName(i), 255, 255, 255, 255)
 				end
 			end
-
-		if(IsPedInAnyVehicle(GetPlayerPed(-1), false))then
-			local speed = GetEntitySpeed(GetVehiclePedIsIn(GetPlayerPed(-1), false)) * 2.236936
-
-			drawTxt(1.407, 1.30, 1.0,1.0,0.7, "~y~" .. math.ceil(speed) .. "", 255, 255, 255, 255)
-			drawTxt(1.4, 1.337, 1.0,1.0,0.7, "~b~ mph", 255, 255, 255, 255)
 		end
 	end
 end)

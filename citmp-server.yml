@@ -10,17 +10,16 @@ AutoStartResources:
     - rconlog
     - hardcap # prevents the game from breaking
     - san_andreas
+    - bcrp
     - vrp
-    - voip
-    - simeonfix
     - Captain14_Sheriff
     - Captain14_LSPD
-    - frfuel
+    - LockDoors
     - handsup
-    - nocarjack
     - lux_vehcontrol
-    - gui_speedometer
+    - speedometer
     - radar
+#    - nocarjack
 
 # do change
 RconPassword: wtf231

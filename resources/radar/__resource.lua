@@ -7,7 +7,8 @@ files {
 	"html/carreghud.js",
 	"html/carreghud.css",
 	"html/digital.ttf",
-	"html/background.png",
+	"html/backgroundv2.png"
 }
 
 client_script "client.lua"
+client_script "pld.lua"

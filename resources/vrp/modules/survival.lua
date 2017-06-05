@@ -150,8 +150,8 @@ AddEventHandler("vRP:playerSpawn",function(user_id, source, first_spawn)
   -- set friendly fire
   vRPclient.setFriendlyFire(source,{cfg.pvp})
 
-  vRPclient.setProgressBar(source,{"vRP:hunger","minimap","",255,153,0,data.hunger})
-  vRPclient.setProgressBar(source,{"vRP:thirst","minimap","",0,125,255,data.thirst})
+  vRPclient.setProgressBar(source,{"vRP:hunger","botright","",255,153,0,data.hunger})
+  vRPclient.setProgressBar(source,{"vRP:thirst","botright","",0,125,255,data.thirst})
 end)
 
 -- EMERGENCY

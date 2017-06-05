@@ -6,6 +6,7 @@ function tvRP.spawnGarageVehicle(vtype,name) -- vtype is the vehicle type (one v
   local vehicle = vehicles[vtype]
   if vehicle and not IsVehicleDriveable(vehicle[3]) then -- precheck if vehicle is undriveable
     -- despawn vehicle
+    SetEntityAsMissionEntity(vehicle[3],true,true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle[3]))
     vehicles[vtype] = nil
   end
@@ -32,7 +33,7 @@ function tvRP.spawnGarageVehicle(vtype,name) -- vtype is the vehicle type (one v
       SetEntityInvincible(nveh,false)
       SetPedIntoVehicle(GetPlayerPed(-1),nveh,-1) -- put player inside
       SetVehicleNumberPlateText(nveh, "P "..tvRP.getRegistrationNumber())
-      SetEntityAsMissionEntity(nveh, true, true) --this is mandatory in order to retrieve the network ID
+      SetEntityAsMissionEntity(nveh, false, false) --this is mandatory in order to retrieve the network ID
 
       vehicles[vtype] = {vtype,name,nveh} -- set current Vehicle
 
@@ -41,7 +42,7 @@ function tvRP.spawnGarageVehicle(vtype,name) -- vtype is the vehicle type (one v
       TriggerClientEvent('nocarjack:addOwnedVehicle', ped, vehNetworkId) --Send the networkID to the player
     end
   else
-    tvRP.notify("You can only have one "..vtype.." Vehicle out.")
+    tvRP.notify("You can only have one "..vtype.." vehicle out.")
   end
 end
 
@@ -51,8 +52,9 @@ function tvRP.despawnGarageVehicle(vtype,max_range)
     local x,y,z = table.unpack(GetEntityCoords(vehicle[3],true))
     local px,py,pz = tvRP.getPosition()
 
-    if GetDistanceBetweenCoords(x,y,z,px,py,pz,true) < max_range then -- check distance with the Vehicle
+    if GetDistanceBetweenCoords(x,y,z,px,py,pz,true) < max_range then -- check distance with the vehicule
       -- remove vehicle
+      SetEntityAsMissionEntity(vehicle[3],true,true)
       Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle[3]))
       vehicles[vtype] = nil
       tvRP.notify("Vehicle stored.")
@@ -74,6 +76,17 @@ function tvRP.getNearestVehicle(radius)
   end
 end
 
+-- try to get a vehicle at a specific position (using raycast)
+function tvRP.getVehicleAtPosition(x,y,z)
+  x = x+0.0001
+  y = y+0.0001
+  z = z+0.0001
+
+  local ray = CastRayPointToPoint(x,y,z,x,y,z+4,10,GetPlayerPed(-1),0)
+  local a, b, c, d, ent = GetRaycastResult(ray)
+  return ent
+end
+
 -- return ok,vtype,name
 function tvRP.getNearestOwnedVehicle(radius)
   local px,py,pz = tvRP.getPosition()
@@ -87,7 +100,7 @@ function tvRP.getNearestOwnedVehicle(radius)
 end
 
 -- return ok,x,y,z
-function tvRP.getOwnedVehiclePosition()
+function tvRP.getAnyOwnedVehiclePosition()
   for k,v in pairs(vehicles) do
     if IsEntityAVehicle(v[3]) then
       local x,y,z = table.unpack(GetEntityCoords(v[3],true))
@@ -98,7 +111,19 @@ function tvRP.getOwnedVehiclePosition()
   return false,0,0,0
 end
 
--- return ok, Vehicle network id
+-- return x,y,z
+function tvRP.getOwnedVehiclePosition(vtype)
+  local vehicle = vehicles[vtype]
+  local x,y,z = 0,0,0
+
+  if vehicle then
+    x,y,z = table.unpack(GetEntityCoords(vehicle[3],true))
+  end
+
+  return x,y,z
+end
+
+-- return ok, vehicule network id
 function tvRP.getOwnedVehicleId(vtype)
   local vehicle = vehicles[vtype]
   if vehicle then
