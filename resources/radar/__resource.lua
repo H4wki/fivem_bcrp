@@ -12,3 +12,4 @@ files {
 
 client_script "client.lua"
 client_script "pld.lua"
+client_script "Proxy.lua"

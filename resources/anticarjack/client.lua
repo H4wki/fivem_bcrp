@@ -1,21 +1,20 @@
-Citizen.CreateThread(function()
-	while true do
-		Wait(10)
+RegisterNetEvent('drifter:forceOpen')
 
-		playerPed = GetPlayerPed(-1)
-		if playerPed then
-			targetVehicleEntry = GetVehiclePedIsTryingToEnter(playerPed)
-				checkCarLock(targetVehicleEntry)
-			end
-		end
-	end
+AddEventHandler('drifter:forceOpen', function(command)
+	local pos = GetEntityCoords(player)
+    local entityWorld = GetOffsetFromEntityInWorldCoords(player, 0.0, 20.0, 0.0)
+
+    local rayHandle = CastRayPointToPoint(pos.x, pos.y, pos.z, entityWorld.x, entityWorld.y, entityWorld.z, 10, player, 0)
+    local a, b, c, d, vehicleHandle = GetRaycastResult(rayHandle)
+
+    if vehicleHandle ~= nil then
+    SetVehicleHasBeenOwnedByPlayer(vehicleHandle, true)
+	Citizen.Trace("Called on Client - /forceopen")
+    end
 end)
 
-function checkCarLock(car)
-	if car then
-		local netID=NetworkGetNetworkIdFromEntity(car)
-		if nil netID then
-			SetVehicleDoorsLocked(car, 2)
-		end
-	end
-end
+RegisterNetEvent('drifter:food')
+
+AddEventHandler('drifter:food', function(command)
+	vRP.setHunger(1,0)
+end)

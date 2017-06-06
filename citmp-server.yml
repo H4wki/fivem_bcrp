@@ -19,7 +19,7 @@ AutoStartResources:
     - lux_vehcontrol
     - speedometer
     - radar
-    - anticarjack
+    - sys_runcode
 
 # do change
 RconPassword: wtf231
