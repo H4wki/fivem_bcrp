@@ -22,7 +22,7 @@ cfg.market_types = {
     ["vodka"] = 30,
 
     --Food
-    ["breed"] = 2,
+    ["bread"] = 2,
     ["donut"] = 2,
     ["tacos"] = 8,
     ["sandwich"] = 20,
@@ -33,6 +33,10 @@ cfg.market_types = {
     _config = {blipid=51, blipcolor=2, permission="emergency.shop"},
     ["medkit"] = 75,
     ["pills"] = 10
+  },
+  ["tools"] = {
+    _config = {blipid=51, blipcolor=47},
+    ["repairkit"] = 50
   }
 }
 

@@ -18,11 +18,12 @@ cfg.gunshop_types = {
   },
   ["Police"] = {
     _config = {blipid=156,blipcolor=1,permission="police.cloakroom"},
-    ["WEAPON_PISTOL"] = {"Pistol",0,15,""},
-    ["WEAPON_COMBATPISTOL"] = {"Combat Pistol",0,15,""},
-    ["WEAPON_PUMPSHOTGUN"] = {"Pump Shotgun",0,70,""},
-    ["WEAPON_CARBINERIFLE"] = {"Carbine Rifle",0,50,""},
-    ["WEAPON_SMG"] = {"SWAT SMG",0,25,""},
+    ["WEAPON_STUNGUN"] = {"Taser",0,0,""},
+    ["WEAPON_PISTOL"] = {"Pistol",0,1,""},
+    ["WEAPON_COMBATPISTOL"] = {"Combat Pistol",0,1,""},
+    ["WEAPON_PUMPSHOTGUN"] = {"Pump Shotgun",0,1,""},
+    ["WEAPON_CARBINERIFLE"] = {"Carbine Rifle",0,1,""},
+    ["WEAPON_SMG"] = {"SWAT SMG",0,1,""},
     ["WEAPON_BZGAS"] = {"Tear Gas",0,0,""},
     ["WEAPON_NIGHTSTICK"] = {"Nighstick",0,0,""}
   }

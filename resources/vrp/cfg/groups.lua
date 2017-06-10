@@ -27,6 +27,7 @@ cfg.groups = {
     "player.unban",
     "player.noclip",
     "player.custom_emote",
+    "player.custom_sound",
     "player.coords",
     "player.tptome",
     "player.tpto"
@@ -48,19 +49,32 @@ cfg.groups = {
     "police.pc",
     "police.handcuff",
     "police.putinveh",
+    "police.getoutveh",
     "police.check",
     "police.service",
     "police.wanted",
     "police.seize.weapons",
     "police.seize.items",
     "police.jail",
-    "police.fine"
+    "police.paycheck",
+    "police.garage",
+    "police.fine",
+    "vehicle.repair",
+    "vehicle.flip"
   },
   ["emergency"] = {
     _config = { gtype = "job" },
     "emergency.revive",
     "emergency.shop",
+    "emergency.paycheck",
+    "emergency.garage",
     "emergency.service"
+  },
+  ["repair"] = {
+    _config = { gtype = "job"},
+    "vehicle.repair",
+    "vehicle.flip",
+    "repair.service"
   },
   ["taxi"] = {
     _config = { gtype = "job" },
@@ -105,6 +119,11 @@ cfg.selectors = {
   ["EMS Job"] = {
     _config = {x=-498.959716796875,y=-335.715148925781,z=34.5017547607422, blipid = 351, blipcolor= 1, permission="ems.whitelist" },
     "Emergency",
+    "Citizen"
+  },
+  ["Mechanic Job"] = {
+    _config = {x = -268.363739013672, y = -955, z = 31.22313880920410, blipid = 351, blipcolor = 47},
+    "Repair",
     "Citizen"
   }
 }

@@ -10,6 +10,6 @@ files {
 	"html/backgroundv2.png"
 }
 
+server_script "server.lua"
 client_script "client.lua"
 client_script "pld.lua"
-client_script "Proxy.lua"

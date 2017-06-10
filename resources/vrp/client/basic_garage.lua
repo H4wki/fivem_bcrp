@@ -6,7 +6,6 @@ function tvRP.spawnGarageVehicle(vtype,name) -- vtype is the vehicle type (one v
   local vehicle = vehicles[vtype]
   if vehicle and not IsVehicleDriveable(vehicle[3]) then -- precheck if vehicle is undriveable
     -- despawn vehicle
-    SetEntityAsMissionEntity(vehicle[3],true,true)
     Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle[3]))
     vehicles[vtype] = nil
   end
@@ -26,23 +25,19 @@ function tvRP.spawnGarageVehicle(vtype,name) -- vtype is the vehicle type (one v
     -- spawn car
     if HasModelLoaded(mhash) then
       local x,y,z = tvRP.getPosition()
-      local ped = GetPlayerPed(-1)
-      local ped_dir = GetEntityHeading(ped)
-      local nveh = CreateVehicle(mhash, x,y,z+0.5, ped_dir, true, false)
+      local nveh = CreateVehicle(mhash, x,y,z+0.5, 0.0, true, false)
       SetVehicleOnGroundProperly(nveh)
       SetEntityInvincible(nveh,false)
       SetPedIntoVehicle(GetPlayerPed(-1),nveh,-1) -- put player inside
       SetVehicleNumberPlateText(nveh, "P "..tvRP.getRegistrationNumber())
-      SetEntityAsMissionEntity(nveh, false, false) --this is mandatory in order to retrieve the network ID
+      Citizen.InvokeNative(0xAD738C3085FE7E11, nveh, true, true) -- set as mission entity
 
-      vehicles[vtype] = {vtype,name,nveh} -- set current Vehicle
+      vehicles[vtype] = {vtype,name,nveh} -- set current vehicule
 
       SetModelAsNoLongerNeeded(mhash)
-      vehNetworkId = GetNetworkIdFromEntity(nveh) --get our networkID because the vehicle is now persistent
-      TriggerClientEvent('nocarjack:addOwnedVehicle', ped, vehNetworkId) --Send the networkID to the player
     end
   else
-    tvRP.notify("You can only have one "..vtype.." vehicle out.")
+    tvRP.notify("You can only have one "..vtype.." vehicule out.")
   end
 end
 
@@ -54,7 +49,6 @@ function tvRP.despawnGarageVehicle(vtype,max_range)
 
     if GetDistanceBetweenCoords(x,y,z,px,py,pz,true) < max_range then -- check distance with the vehicule
       -- remove vehicle
-      SetEntityAsMissionEntity(vehicle[3],true,true)
       Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(vehicle[3]))
       vehicles[vtype] = nil
       tvRP.notify("Vehicle stored.")
@@ -64,15 +58,36 @@ function tvRP.despawnGarageVehicle(vtype,max_range)
   end
 end
 
--- (deprecated) this function return the nearest vehicle
--- (don't work with lot of vehicles, police, etc...)
+-- (experimental) this function return the nearest vehicle
+-- (don't work with all vehicles, but aim to)
 function tvRP.getNearestVehicle(radius)
   local x,y,z = tvRP.getPosition()
   local ped = GetPlayerPed(-1)
   if IsPedSittingInAnyVehicle(ped) then
     return GetVehiclePedIsIn(ped, true)
   else
-    return GetClosestVehicle(x+0.0001,y+0.0001,z+0.0001, radius+0.0001, 0, 70) 
+    -- flags used:
+    --- 8192: boat
+    --- 4096: helicos
+    --- 4,2,1: cars (with police)
+
+    local veh = GetClosestVehicle(x+0.0001,y+0.0001,z+0.0001, radius+0.0001, 0, 8192+4096+4+2+1)  -- boats, helicos
+    if not IsEntityAVehicle(veh) then veh = GetClosestVehicle(x+0.0001,y+0.0001,z+0.0001, radius+0.0001, 0, 4+2+1) end -- cars
+    return veh
+  end
+end
+
+function tvRP.fixeNearestVehicle(radius)
+  local veh = tvRP.getNearestVehicle(radius)
+  if IsEntityAVehicle(veh) then
+    SetVehicleFixed(veh)
+  end
+end
+
+function tvRP.flipNearestVehicle(radius)
+  local veh = tvRP.getNearestVehicle(radius)
+  if IsEntityAVehicle(veh) then
+    SetVehicleOnGroundProperly(veh)
   end
 end
 
@@ -137,7 +152,8 @@ end
 function tvRP.ejectVehicle()
   local ped = GetPlayerPed(-1)
   if IsPedSittingInAnyVehicle(ped) then
-    KnockPedOffVehicle(ped)
+    local veh = GetVehiclePedIsIn(ped,false)
+    TaskLeaveVehicle(ped, veh, 4160)
   end
 end
 

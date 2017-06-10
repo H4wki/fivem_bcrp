@@ -181,8 +181,16 @@ cfg.garage_types = {
     ["vindicator"] = {"Vindicator",600000,""}
   },
   ["Police"]  = {
-    _config = {vtype="car",blipid=50,blipcolor=38,permission="police.cloakroom"},
-    ["police"] = {"Police Stanier", 0, ""},
+    _config = {vtype="car",blipid=50,blipcolor=38,permission="police.garage"},
+    ["police2"] = {"Police Dodge Charger", 0, ""},
+    ["police4"] = {"Police Ford Interceptor (Taurus)", 0, ""},
+    ["police5"] = {"Police Ford Explorer", 0, ""},
+    ["police6"] = {"Police Chevy Tahoe", 0, ""},
+    ["police7"] = {"Police Ford Crown Vic", 0, ""},
+    ["police8"] = {"Police Chevy Impala", 0, ""}
+  }.
+  ["Sheriff"]  = {
+    _config = {vtype="car",blipid=50,blipcolor=38,permission="police.garage"},
     ["police2"] = {"Police Charger", 0, ""},
     ["police3"] = {"Police Interceptor Utility 2013", 0, ""},
     ["police4"] = {"Police Interceptor Sedan 2013", 0, ""},

@@ -7,7 +7,8 @@ local lang = {
     invalid_value = "~r~Valeur incorrecte.",
     invalid_name = "~r~Nom incorrect.",
     not_found = "~r~Non trouvé.",
-    request_refused = "~r~Requête refusée."
+    request_refused = "~r~Requête refusée.",
+    wearing_uniform = "~r~Attention, vous portez un uniforme."
   },
   survival = {
     starving = "Affamé",
@@ -351,6 +352,14 @@ local lang = {
       title = "Demander ouvrir coffre",
       asked = "~g~Demande...",
       request = "Voulez vous ouvrir le coffre ?"
+    },
+    flip = {
+      title = "Replacer véhicule",
+      description = "Replacer sur le sol le véhicule le plus proche."
+    },
+    repair = {
+      title = "Réparer véhicule",
+      description = "Réparer le véhicule le plus proche."
     }
   },
   gunshop = {

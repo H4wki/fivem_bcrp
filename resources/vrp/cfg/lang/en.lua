@@ -3,16 +3,17 @@
 
 local lang = {
   common = {
-    welcome = "Welcome. Use the phone keys to use the menu.~n~last login: {1}",
+    welcome = "Welcome. Press M to open the menu.~n~last login: {1}",
     no_player_near = "~r~No player near you.",
     invalid_value = "~r~Invalid value.",
     invalid_name = "~r~Invalid name.",
     not_found = "~r~Not found.",
     request_refused = "~r~Request refused."
+    wearing_uniform = "~r~Be careful, you are in uniform."
   },
   survival = {
-    starving = "starving",
-    thirsty = "thirsty"
+    starving = "STARVING",
+    thirsty = "THIRSTY"
   },
   money = {
     display = "{1} <span class=\"symbol\">$</span>",
@@ -21,8 +22,8 @@ local lang = {
     not_enough = "~r~Not enough money.",
     paid = "Paid ~r~{1}$.",
     give = {
-      title = "Give money",
-      description = "Give money to the nearest player.",
+      title = "Give Money",
+      description = "Give money to nearest player.",
       prompt = "Amount to give:"
     }
   },
@@ -90,24 +91,24 @@ local lang = {
       info = "<em>capital: </em>{1} $<br /><em>owner: </em>{2} {3}<br /><em>registration n°: </em>{4}<br /><em>phone: </em>{5}"
     },
     info = {
-      title = "Business info",
+      title = "Business Info",
       info = "<em>name: </em>{1}<br /><em>capital: </em>{2} $<br /><em>capital transfer: </em>{3} $<br /><br/>Capital transfer is the amount of money transfered for a business economic period, the maximum is the business capital."
     },
     addcapital = {
-      title = "Add capital",
+      title = "Add Capital",
       description = "Add capital to your business.",
       prompt = "Amount to add to the business capital:",
       added = "~r~{1}$ ~s~added to the business capital."
     },
     launder = {
-      title = "Money laundering",
+      title = "Money Laundering",
       description = "Use your business to launder dirty money.",
       prompt = "Amount of dirty money to launder (max {1} $): ",
       laundered = "~g~{1}$ ~s~laundered.",
       not_enough = "~r~Not enough dirty money."
     },
     open = {
-      title = "Open business",
+      title = "Open Business",
       description = "Open your business, minimum capital is {1} $.",
       prompt_name = "Business name (can't change after, max {1} chars):",
       prompt_capital = "Initial capital (min {1})",
@@ -120,13 +121,13 @@ local lang = {
     identity = {
       title = "New identity",
       description = "Create a new identity, cost = {1} $.",
-      prompt_firstname = "Enter your firstname:",
-      prompt_name = "Enter your name:",
+      prompt_firstname = "Enter your first name:",
+      prompt_name = "Enter your last name:",
       prompt_age = "Enter your age:",
     },
     menu = {
       title = "Identity",
-      info = "<em>Name: </em>{1}<br /><em>First name: </em>{2}<br /><em>Age: </em>{3}<br /><em>Registration n°: </em>{4}<br /><em>Phone: </em>{5}<br /><em>Address: </em>{7}, {6}"
+      info = "<em>Last Name: </em>{1}<br /><em>First name: </em>{2}<br /><em>Age: </em>{3}<br /><em>Registration n°: </em>{4}<br /><em>Phone: </em>{5}<br /><em>Address: </em>{7}, {6}"
     }
   },
   police = {
@@ -179,33 +180,37 @@ local lang = {
         description = "Handcuff/unhandcuff nearest player."
       },
       putinveh = {
-        title = "Put in vehicle",
+        title = "Put in Vehicle",
         description = "Put the nearest handcuffed player in the nearest owned vehicle, as passenger."
       },
+      getoutveh = {
+        title = "Remove from Vehicle",
+        description = "Get handcuffed player out of the nearest vehicle."
+      },
       askid = {
-        title = "Ask ID",
+        title = "Ask for ID",
         description = "Ask ID card from the nearest player.",
         request = "Do you want to give your ID card ?",
         request_hide = "Hide the ID card.",
         asked = "Asking ID..."
       },
       check = {
-        title = "Check player",
+        title = "Search Player",
         description = "Check money, inventory and weapons of the nearest player.",
         request_hide = "Hide the check report.",
         info = "<em>money: </em>{1} $<br /><br /><em>inventory: </em>{2}<br /><br /><em>weapons: </em>{3}",
-        checked = "You have being checked."
+        checked = "You have been searched."
       },
       seize = {
         seized = "Seized {2} ~r~{1}",
         weapons = {
-          title = "Seize weapons",
+          title = "Seize Weapons",
           description = "Seize nearest player weapons",
           seized = "~b~Your weapons have been seized."
         },
         items = {
-          title = "Seize illegals",
-          description = "Seize illegal items",
+          title = "Seize Items",
+          description = "Seize illegal items.",
           seized = "~b~Your illegal stuff has been seized."
         }
       },
@@ -235,7 +240,7 @@ local lang = {
       revive = {
         title = "Reanimate",
         description = "Reanimate the nearest player.",
-        not_in_coma = "~r~Not in coma."
+        not_in_coma = "~r~No longer unconscious."
       }
     }
   },
@@ -276,7 +281,7 @@ local lang = {
       title = "Service",
       description = "Call a service or an emergency number.",
       prompt = "If needed, enter a message for the service:",
-      ask_call = "Received {1} call, do you take it ? <em>{2}</em>",
+      ask_call = "Received {1} call, take it? <em>{2}</em>",
       taken = "~r~This call is already taken."
     }
   },
@@ -309,7 +314,7 @@ local lang = {
       refused = "~r~Refused to enter.",
       prompt_who = "Say who you are:",
       asked = "Asking...",
-      request = "Someone wants to open your home door: <em>{1}</em>"
+      request = "Someone is at the door: <em>{1}</em>"
     },
     slot = {
       leave = {
@@ -325,11 +330,11 @@ local lang = {
     title = "Garage ({1})",
     owned = {
       title = "Owned",
-      description = "Owned vehicles."
+      description = "Owned Vehicles."
     },
     buy = {
       title = "Buy",
-      description = "Buy vehicles.",
+      description = "Buy Vehicles.",
       info = "{1} $<br /><br />{2}"
     },
     store = {
@@ -345,13 +350,21 @@ local lang = {
       description = "Open the vehicle trunk."
     },
     detach_trailer = {
-      title = "Detach trailer",
+      title = "Detach Trailer",
       description = "Detach trailer."
     },
     asktrunk = {
-      title = "Ask open trunk",
+      title = "Ask to Open Trunk",
       asked = "~g~Asking...",
-      request = "Do you want to open the trunk ?"
+      request = "Can you open your trunk please?"
+    },
+    flip = {
+      title = "Flip Vehicle",
+      description = "Flip the nearest vehicle on it's wheels."
+    },
+    repair = {
+      title = "Repair Vehicle",
+      description = "Repair the nearest vehicle."
     }
   },
   gunshop = {

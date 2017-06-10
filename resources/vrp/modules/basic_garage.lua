@@ -196,7 +196,7 @@ local function ch_vehicle(player,choice)
   local user_id = vRP.getUserId(player)
   if user_id ~= nil then
     -- check vehicle
-    vRPclient.getNearestOwnedVehicle(player,{5},function(ok,vtype,name)
+    vRPclient.getNearestOwnedVehicle(player,{7},function(ok,vtype,name)
       if ok then
         -- build vehicle menu
         local menu = {name=lang.vehicle.title(), css={top="75px",header_color="rgba(255,125,0,0.75)"}}
@@ -221,18 +221,18 @@ local function ch_asktrunk(player,choice)
       vRPclient.notify(player,{lang.vehicle.asktrunk.asked()})
       vRP.request(nplayer,lang.vehicle.asktrunk.request(),15,function(nplayer,ok)
         if ok then -- request accepted, open trunk
-          vRPclient.getNearestOwnedVehicle(player,{5},function(ok,vtype,name)
+          vRPclient.getNearestOwnedVehicle(nplayer,{7},function(ok,vtype,name)
             if ok then
               local chestname = "u"..nuser_id.."veh_"..string.lower(name)
               local max_weight = cfg_inventory.vehicle_chest_weights[string.lower(name)] or cfg_inventory.default_vehicle_chest_weight
 
               -- open chest
               local cb_out = function(idname,amount)
-                vRPclient.notify(nplayer,{lang.inventory.give.given({idname,amount})})
+                vRPclient.notify(nplayer,{lang.inventory.give.given({vRP.getItemName(idname),amount})})
               end
 
               local cb_in = function(idname,amount)
-                vRPclient.notify(nplayer,{lang.inventory.give.received({idname,amount})})
+                vRPclient.notify(nplayer,{lang.inventory.give.received({vRP.getItemName(idname),amount})})
               end
 
               vRPclient.vc_openDoor(nplayer, {vtype,5})
@@ -254,6 +254,28 @@ local function ch_asktrunk(player,choice)
   end)
 end
 
+-- repair nearest vehicle
+local function ch_repair(player,choice)
+  local user_id = vRP.getUserId(player)
+  if user_id ~= nil then
+    -- anim and repair
+    if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
+      vRPclient.playAnim(player,{false,{task="WORLD_HUMAN_WELDING"},false})
+      SetTimeout(15000, function()
+        vRPclient.fixeNearestVehicle(player,{7})
+        vRPclient.stopAnim(player,{false})
+      end)
+    else
+      vRPclient.notify(player,{lang.inventory.missing({vRP.getItemName("repairkit"),1})})
+    end
+  end
+end
+
+-- flip nearest vehicle
+local function ch_flip(player,choice)
+  vRPclient.flipNearestVehicle(player,{7})
+end
+
 AddEventHandler("vRP:buildMainMenu",function(player)
   local user_id = vRP.getUserId(player)
   if user_id ~= nil then
@@ -263,6 +285,15 @@ AddEventHandler("vRP:buildMainMenu",function(player)
 
     -- add ask trunk
     choices[lang.vehicle.asktrunk.title()] = {ch_asktrunk}
+
+    -- add repair functions
+    if vRP.hasPermission(user_id, "vehicle.repair") then
+      choices[lang.vehicle.repair.title()] = {ch_repair, lang.vehicle.repair.description()}
+    end
+
+    if vRP.hasPermission(user_id, "vehicle.flip") then
+      choices[lang.vehicle.flip.title()] = {ch_flip, lang.vehicle.flip.description()}
+    end
 
     vRP.buildMainMenu(player,choices)
   end

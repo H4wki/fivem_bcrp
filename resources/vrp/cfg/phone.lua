@@ -40,9 +40,18 @@ cfg.services = {
     blipcolor = 5,
     alert_time = 300,
     alert_permission = "taxi.service",
-    alert_notify = "~y~Call a Taxi:~n~~s~",
+    alert_notify = "~y~Taxi:~n~~s~",
     notify = "~y~You called a taxi.",
     answer_notify = "~y~A taxi is coming."
+  },
+  ["repair"] = {
+    blipid = 446,
+    blipcolor = 5,
+    alert_time = 300,
+    alert_permission = "repair.service",
+    alert_notify = "~y~Mechanic:~n~~s~",
+    notify = "~y~You called a mechanic.",
+    answer_notify = "~y~A mechanic is coming."
   }
 }
 

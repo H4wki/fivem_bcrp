@@ -12,9 +12,3 @@ AddEventHandler('drifter:forceOpen', function(command)
 	Citizen.Trace("Called on Client - /forceopen")
     end
 end)
-
-RegisterNetEvent('drifter:food')
-
-AddEventHandler('drifter:food', function(command)
-	vRP.setHunger(1,0)
-end)

@@ -19,11 +19,19 @@ function tvRP.teleport(x,y,z)
   vRPserver.updatePos({x,y,z})
 end
 
+-- return x,y,z
 function tvRP.getPosition()
   local x,y,z = table.unpack(GetEntityCoords(GetPlayerPed(-1),true))
   return x,y,z
 end
 
+-- return false if in exterior, true if inside a building
+function tvRP.isInside()
+  local x,y,z = tvRP.getPosition()
+  return not (GetInteriorAtCoords(x,y,z) == 0)
+end
+
+-- return vx,vy,vz
 function tvRP.getSpeed()
   local vx,vy,vz = table.unpack(GetEntityVelocity(GetPlayerPed(-1)))
   return math.sqrt(vx*vx+vy*vy+vz*vz)
@@ -245,6 +253,21 @@ Citizen.CreateThread(function()
   end
 end)
 
+-- SOUND
+-- some lists: 
+-- pastebin.com/A8Ny8AHZ
+-- https://wiki.gtanet.work/index.php?title=FrontEndSoundlist
+
+-- play sound at a specific position
+function tvRP.playSpatializedSound(dict,name,x,y,z,range)
+  PlaySoundFromCoord(-1,name,x+0.0001,y+0.0001,z+0.0001,dict,0,range+0.0001,0)
+end
+
+-- play sound
+function tvRP.playSound(dict,name)
+  PlaySound(-1,name,dict,0,0,1)
+end
+
 --[[
 -- not working
 function tvRP.setMovement(dict)
@@ -259,7 +282,6 @@ end
 -- events
 
 AddEventHandler("playerSpawned",function()
-  NetworkSetTalkerProximity(cfg.voice_proximity+0.0001)
   TriggerServerEvent("vRPcli:playerSpawned")
 end)
 
@@ -271,5 +293,22 @@ AddEventHandler("onPlayerKilled",function(player,killer,reason)
   TriggerServerEvent("vRPcli:playerDied")
 end)
 
+-- voice proximity computation
+Citizen.CreateThread(function()
+  while true do
+    Citizen.Wait(500)
+    local ped = GetPlayerPed(-1)
+    local proximity = cfg.voice_proximity
 
+    if voiceSetting == whisper then
+      proximity = cfg.voice_proximity_vehicle
+    elseif IsPedSittingInAnyVehicle(ped) then
+      proximity = cfg.voice_proximity_vehicle
+    elseif tvRP.isInside() then
+      proximity = cfg.voice_proximity_inside
+    end
+
+    NetworkSetTalkerProximity(proximity+0.0001)
+  end
+end)
 
