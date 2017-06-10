@@ -2,7 +2,6 @@
 	Example Commands
 	/crun SetVehicleCustomPrimaryColour(GetVehiclePedIsUsing(GetPlayerPed(-1)), 255, 70, 0)
 	/crun SetVehicleFixed(GetVehiclePedIsUsing(GetPlayerPed(-1)))
-	/crun GetEntityModel(GetVehiclePedIsUsing(GetPlayerPed(-1)))
 	/crun GetEntityCoords(GetPlayerPed(-1))
 ]]
 

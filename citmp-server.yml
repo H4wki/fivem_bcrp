@@ -5,27 +5,25 @@ PreParseResources:
 
 AutoStartResources:
     - chat
-    - spawnmanager
-    - baseevents
-    - rconlog
-    - hardcap # prevents the game from breaking
     - san_andreas
     - bcrp
     - vrp
-    - Captain14_Sheriff
-    - Captain14_LSPD
-    - LockDoors
-    - handsup
-    - lux_vehcontrol
-    - speedometer
+    - spawnmanager
+    - baseevents
+    - rconlog
+#    - mysql-async
+    - hardcap
+    - LSPD
+    - Sheriff
+#    - emotes
     - radar
-    - sys_runcode
+    - speedometer
 
 # do change
 RconPassword: wtf231
 
 # configure this, please
-Hostname: Drifter's Test
+Hostname: Boonie Crew RP
 
 ScriptDebug: true
 
