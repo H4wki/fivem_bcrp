@@ -10,13 +10,21 @@ AutoStartResources:
     - baseevents
     - rconlog
     - hardcap # prevents the game from breaking
-    - scoreboard
+#    - scoreboard
+    - vrp
+    - bcrp
+    - radar
+    - speedometer
+#    - emotes
+    - LSPD
+    - Sheriff
+    - lux_vehcontrol
 
 # do change
-RconPassword: lovely
+RconPassword: wtf231
 
 # configure this, please
-Hostname: default FiveM server
+Hostname: Boonie Crew RP
 
 ScriptDebug: true
 
@@ -26,13 +34,13 @@ DebugLog: true
 Announce: true
 
 # set to false to require players to be signed in to Steam
-DisableAuth: true
+DisableAuth: false
 
 # set to true to disable local script hook plugins
 DisableScriptHook: true
 
 # uncomment and set to the path of an icon to use in the server browser. it should be square.
-#ServerIcon: hello.png
+ServerIcon: hello.png
 
 # don't try enabling this
 #UseGameServerV2: true
