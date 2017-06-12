@@ -3,6 +3,11 @@ local cfg = require("resources/vrp/cfg/inventory")
 
 -- this module define the player inventory (lost after respawn, as wallet)
 
+-- Menu events in this module:
+-- VRP:buildInventoryMenu
+-- vRP:buildInventoryItemMenu
+-- (you can get the exact Item name from the Menu data passed to the event)
+
 vRP.items = {}
 
 -- define an inventory item (call this at server start)

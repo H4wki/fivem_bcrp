@@ -5,6 +5,9 @@ local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/atms")
 local atms = cfg.atms
 
+-- Menu events in this module:
+-- vRP:buildATMMenu
+
 local function play_atm_enter(player)
   vRPclient.playAnim(player,{false,{{"amb@prop_human_atm@male@enter","enter"},{"amb@prop_human_atm@male@idle_a","idle_a"}},false})
 end

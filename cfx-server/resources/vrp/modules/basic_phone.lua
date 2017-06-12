@@ -6,6 +6,14 @@ local cfg = require("resources/vrp/cfg/phone")
 local htmlEntities = require("resources/vrp/lib/htmlEntities")
 local services = cfg.services
 
+--[[Menu events in this module:
+vRP:buildPhoneMenu
+vRP:buildPhoneDirectoryMenu
+vRP:buildPhoneContactMenu
+vRP:buildPhoneSMSMenu
+vRP:buildPhoneServiceMenu
+]]
+
 -- api
 
 -- Send a service alert to all service listeners

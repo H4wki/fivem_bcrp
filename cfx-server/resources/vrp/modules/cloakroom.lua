@@ -3,6 +3,9 @@
 local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/cloakrooms")
 
+-- Menu events in this module:
+-- vRP:buildCloacroomMenu
+
 -- build cloakroom menus
 
 local menus = {}

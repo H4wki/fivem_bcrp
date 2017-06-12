@@ -3,7 +3,7 @@ local cfg = {}
 
 cfg.db = {
   host = "127.0.0.1",
-  database = "vRP",
+  database = "vrp",
   user = "root",
   password = "wtf231"
 }

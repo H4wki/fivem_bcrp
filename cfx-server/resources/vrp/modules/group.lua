@@ -11,6 +11,9 @@ local groups = cfg.groups
 local users = cfg.users
 local selectors = cfg.selectors
 
+-- Menu events in this module:
+-- vRP:buildGroupMenu
+
 -- get groups keys of a connected user
 function vRP.getUserGroups(user_id)
   local data = vRP.getUserDataTable(user_id)

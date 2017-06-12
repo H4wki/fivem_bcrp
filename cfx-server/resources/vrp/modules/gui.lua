@@ -2,6 +2,9 @@ local Tools = require("resources/vrp/lib/Tools")
 
 local cfg = require("resources/vrp/cfg/gui")
 
+-- Menu events in this module:
+-- vRP:buildMainMenu
+
 -- MENU
 
 local menu_ids = Tools.newIDGenerator()

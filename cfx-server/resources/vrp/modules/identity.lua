@@ -3,6 +3,9 @@ local htmlEntities = require("resources/vrp/lib/htmlEntities")
 local cfg = require("resources/vrp/cfg/identity")
 local lang = vRP.lang
 
+-- Menu events in this module:
+-- vRP:buildIdentityMenu
+
 -- this module describe the identity system
 
 -- init sql

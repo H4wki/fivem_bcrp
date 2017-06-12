@@ -4,6 +4,10 @@
 local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/homes")
 
+-- Menu events in this module:
+-- vRP:buildHouseMenu
+-- vRP:buildHouseEnterMenu
+
 -- sql
 
 local q_init = vRP.sql:prepare([[

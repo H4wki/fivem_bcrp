@@ -8,6 +8,9 @@ local gunshop_types = cfg.gunshop_types
 
 local gunshop_menus = {}
 
+-- Menu events in this module:
+-- vRP:buildGunshopMenu
+
 -- build gunshop menus
 for gtype,weapons in pairs(gunshop_types) do
   local gunshop_menu = {

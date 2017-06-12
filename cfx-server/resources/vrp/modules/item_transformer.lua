@@ -8,6 +8,10 @@ local cfg = require("resources/vrp/cfg/item_transformers")
 local cfg_inventory = require("resources/vrp/cfg/inventory")
 local lang = vRP.lang
 
+-- Menu events in this module:
+-- vRP:buildTransformerMenu
+-- vRP:buildInformerMenu
+
 -- api
 
 local transformers = {}

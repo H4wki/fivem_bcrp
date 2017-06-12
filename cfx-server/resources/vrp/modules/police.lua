@@ -3,6 +3,11 @@
 local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/police")
 
+--[[Menu events in this module:
+vRP:buildPoliceMenu
+vRP:buildPoliceFineMenu
+]]
+
 -- police records
 
 -- insert a police record for a specific user

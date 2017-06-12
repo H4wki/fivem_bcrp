@@ -5,6 +5,10 @@ local cfg = require("resources/vrp/cfg/business")
 local htmlEntities = require("resources/vrp/lib/htmlEntities")
 local lang = vRP.lang
 
+-- Menu events in this module:
+-- vRP:buildBusinessDirectoryMenu
+-- vRP:buildBusinessMenu
+
 -- sql
 local q_init = vRP.sql:prepare([[
 CREATE TABLE IF NOT EXISTS vrp_user_business(
