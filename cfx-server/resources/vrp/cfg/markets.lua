@@ -30,7 +30,7 @@ cfg.market_types = {
     ["pdonut"] = 65,
   },
   ["drugstore"] = {
-    _config = {blipid=51, blipcolor=2},
+    _config = {blipid=51, blipcolor=2, permission="emergency.shop"},
     ["medkit"] = 75,
     ["pills"] = 10
   },

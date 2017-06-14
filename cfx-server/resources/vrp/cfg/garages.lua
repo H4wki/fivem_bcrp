@@ -8,11 +8,12 @@ local cfg = {}
 -- this is used to let the player spawn a boat AND a car at the same time for example, and only despawn it in the correct garage
 -- _config: vtype, blipid, blipcolor, permission (optional, only users with the permission will have access to the shop)
 
-cfg.rent_factor = 0.1 -- 10% of the original price if a rent
-cfg.sell_factor = 0.75 -- sell for 75% of the original price
+cfg.rent_factor = 0.15 -- 15% of the original price if a rent
+cfg.sell_factor = 0.60 -- sell for 60% of the original price
 
 cfg.garage_types = {
-  ["compacts"]  = {
+
+  ["Vehicles"]  = {
     _config = {vtype="car",blipid=50,blipcolor=4},
     ["blista"] = {"Blista", 15000, ""},
     ["brioso"] = {"Brioso R/A", 155000, ""},
@@ -20,11 +21,7 @@ cfg.garage_types = {
     ["issi2"] = {"Issi", 18000, ""},
     ["panto"] = {"Panto", 85000, ""},
     ["prairie"] = {"Prairie", 30000, ""},
-    ["rhapsody"] = {"Rhapsody", 120000, ""}
-  },
-
-  ["coupe"] = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["rhapsody"] = {"Rhapsody", 120000, ""},
     ["cogcabrio"] = {"Cognoscenti Cabrio",180000, ""},
     ["exemplar"] = {"Exemplar", 200000, ""},
     ["F620"] = {"F620", 80000, ""},
@@ -38,11 +35,7 @@ cfg.garage_types = {
     ["windsor"] = {"Windsor",800000, ""},
     ["windsor2"] = {"Windsor Drop",850000, ""},
     ["zion"] = {"Zion", 60000, ""},
-    ["zion2"] = {"Zion Cabrio", 65000, ""}
-  },
-
-  ["sports"] = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["zion2"] = {"Zion Cabrio", 65000, ""},
     ["ninef"] = {"9F",120000, ""},
     ["ninef2"] = {"9F Cabrio",130000, ""},
     ["alpha"] = {"Alpha",150000, ""},
@@ -72,11 +65,7 @@ cfg.garage_types = {
     ["sultan"] = {"Sultan",12000, ""},
     ["surano"] = {"Surano",110000, ""},
     ["tropos"] = {"Tropos",816000, ""},
-    ["verlierer2"] = {"Verkierer",695000,""}
-  },
-
-  ["sportsclassics"] = {
-    _config = {vtype="car",blipid=50,blipcolor=5},
+    ["verlierer2"] = {"Verkierer",695000,""},
     ["casco"] = {"Casco",680000, ""},
     ["coquette2"] = {"Coquette Classic",665000, ""},
     ["jb700"] = {"JB 700",350000, ""},
@@ -84,11 +73,7 @@ cfg.garage_types = {
     ["stinger"] = {"Stinger",850000, ""},
     ["stingergt"] = {"Stinger GT",875000, ""},
     ["feltzer3"] = {"Stirling",975000, ""},
-    ["ztype"] = {"Z-Type",950000,""}
-  },
-
-  ["supercars"] = {
-    _config = {vtype="car",blipid=50,blipcolor=5},
+    ["ztype"] = {"Z-Type",950000,""},
     ["adder"] = {"Adder",1000000, ""},
     ["banshee2"] = {"Banshee 900R",565000, ""},
     ["bullet"] = {"Bullet",155000, ""},
@@ -107,11 +92,7 @@ cfg.garage_types = {
     ["vacca"] = {"Vacca",240000, ""},
     ["voltic"] = {"Voltic",150000, ""},
     ["prototipo"] = {"X80 Proto",2700000, "6 - (less numner better car"},
-    ["zentorno"] = {"Zentorno",725000,"3 - (less numner better car"}
-  },
-
-  ["musclecars"] = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["zentorno"] = {"Zentorno",725000,"3 - (less numner better car"},
     ["blade"] = {"Blade",160000, ""},
     ["buccaneer"] = {"Buccaneer",29000, ""},
     ["Chino"] = {"Chino",225000, ""},
@@ -126,11 +107,7 @@ cfg.garage_types = {
     ["sabregt"] = {"Sabre Turbo",15000, ""},
     ["tampa"] = {"Tampa",375000, ""},
     ["virgo"] = {"Virgo",195000, ""},
-    ["vigero"] = {"Vigero",21000, ""}
-  },
-
-  ["off-road"] = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["vigero"] = {"Vigero",21000, ""},
     ["bifta"] = {"Bifta",75000, ""},
     ["blazer"] = {"Blazer",8000, ""},
     ["brawler"] = {"Brawler",715000, ""},
@@ -139,11 +116,7 @@ cfg.garage_types = {
     ["rebel2"] = {"Rebel",22000, ""},
     ["sandking"] = {"Sandking",38000, ""},
     ["monster"] = {"The Liberator",550000, ""},
-    ["trophytruck"] = {"The Liberator",550000, ""}
-  },
-
-  ["suvs"]  = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["trophytruck"] = {"The Liberator",550000, ""},
     ["baller"] = {"Baller",90000, ""},
     ["cavalcade"] = {"Cavalcade",60000, ""},
     ["granger"] = {"Grabger",35000, ""},
@@ -152,11 +125,7 @@ cfg.garage_types = {
     ["radi"] = {"Radius",32000, ""},
     ["rocoto"] = {"Rocoto",85000, ""},
     ["seminole"] = {"Seminole",30000, ""},
-    ["xls"] = {"XLS",253000, ""}
-  },
-
-  ["vans"] = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["xls"] = {"XLS",253000, ""},
     ["bison"] = {"Bison",30000, ""},
     ["bobcatxl"] = {"Bobcat XL",23000, ""},
     ["gburrito"] = {"Gang Burrito",65000, ""},
@@ -165,11 +134,7 @@ cfg.garage_types = {
     ["paradise"] = {"Paradise",25000, ""},
     ["rumpo"] = {"Rumpo",13000, ""},
     ["surfer"] = {"Surfer",11000, ""},
-    ["youga"] = {"Youga",16000, ""}
-  },
-
-  ["sedans"] = {
-    _config = {vtype="car",blipid=50,blipcolor=4},
+    ["youga"] = {"Youga",16000, ""},
     ["asea"] = {"Asea",1000000, ""},
     ["asterope"] = {"Asterope",1000000, ""},
     ["cognoscenti"] = {"Cognoscenti",1000000, ""},
@@ -192,11 +157,7 @@ cfg.garage_types = {
     ["surge"] = {"Surge",38000, ""},
     ["tailgater"] = {"Tailgater",55000, ""},
     ["warrener"] = {"Warrener",120000, ""},
-    ["washington"] = {"Washington",15000, ""}
-  },
-
-  ["motorcycles"] = {
-    _config = {vtype="bike",blipid=226,blipcolor=4},
+    ["washington"] = {"Washington",15000, ""},
     ["AKUMA"] = {"Akuma",9000, ""},
     ["bagger"] = {"Bagger",5000, ""},
     ["bati"] = {"Bati 801",15000, ""},
@@ -221,19 +182,30 @@ cfg.garage_types = {
     ["thrust"] = {"Thrust",75000, ""},
     ["vader"] = {"Vader",9000, ""},
     ["vindicator"] = {"Vindicator",600000,""}
+  },
+  ["Police"]  = {
+    _config = {vtype="car",blipid=50,blipcolor=38,permission="police.cloakroom"},
+    ["police"] = {"Police Stanier", 0, ""},
+    ["police2"] = {"Police Charger", 0, ""},
+    ["police3"] = {"Police Interceptor Utility 2013", 0, ""},
+    ["police4"] = {"Police Interceptor Sedan 2013", 0, ""},
+    ["police5"] = {"Police Interceptor Utility 2016", 0, ""},
+    ["police6"] = {"Police Tahoe", 0, ""},
+    ["police7"] = {"Police Crown Victoria", 0, ""},
+    ["police8"] = {"Police Impala", 0, ""}
   }
 }
 
 -- {garage_type,x,y,z}
 cfg.garages = {
-  {"compacts",-356.146, -134.69, 39.0097},
-  {"coupe",723.013, -1088.92, 22.1829},
-  {"sports",-1145.67, -1991.17, 13.162},
-  {"sportsclassics",1174.76, 2645.46, 37.7545},
-  {"supercars",112.275, 6619.83, 31.8154},
-  {"motorcycles",-205.789, -1308.02, 31.2916}
-  --{"planes",1640, 3236, 40.4},
-  --{"planes",2123, 4805, 41.19},
+  {"Vehicles",-356.146, -134.69, 39.0097},
+  {"Vehicles",723.013, -1088.92, 22.1829},
+  {"Vehicles",-1145.67, -1991.17, 13.162},
+  {"Vehicles",1174.76, 2645.46, 37.7545},
+  {"Vehicles",112.275, 6619.83, 31.8154},
+  {"Vehicles",-205.789, -1308.02, 31.2916},
+  {"Police",451.815734863281,-1019.39190673828,28.4337768554688}
+  --{"Emergency",-515.8623046875,-294.686553955078,35.2266616821289}
   --{"planes",-1348, -2230, 13.9},
   --{"helicopters",1750, 3260, 41.37},
   --{"helicopters",-1233, -2269, 13.9},

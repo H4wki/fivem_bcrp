@@ -75,6 +75,14 @@ cfg.groups = {
     _config = { gtype = "job" },
     "taxi.service"
   },
+  ["copjob"] = {
+    _config = { gtype = "job" },
+    "police.whitelist"
+  },
+  ["emsjob"] = {
+    _config = { gtype = "job" },
+    "ems.whitelist"
+  },
   ["citizen"] = {
     _config = { gtype = "job" }
   }
@@ -93,12 +101,21 @@ cfg.users = {
 --- x,y,z, blipid, blipcolor, permission (optional)
 
 cfg.selectors = {
-  ["Job Selector"] = {
+  ["Employment"] = {
     _config = {x = -268.363739013672, y = -957.255126953125, z = 31.22313880920410, blipid = 351, blipcolor = 47},
-    "police",
-    "taxi",
-    "repair",
-    "citizen"
+    "Taxi",
+    "Repair",
+    "Citizen"
+  },
+  ["Police Job"] = {
+    _config = {x = 447.245666503906,y = -975.791931152344, z = 30.689582824707 , blipid = 351, blipcolor= 38, permission="police.whitelist" },
+    "Police",
+    "Citizen"
+  },
+  ["EMS Job"] = {
+    _config = {x=-498.959716796875,y=-335.715148925781,z=34.5017547607422, blipid = 351, blipcolor= 1, permission="ems.whitelist" },
+    "Emergency",
+    "Citizen"
   }
 }
 
