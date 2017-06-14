@@ -2,7 +2,9 @@
 local cfg = {}
 
 -- PC position
-cfg.pc = {1853.21, 3689.51, 34.2671}
+cfg.pc = {
+  {1853.21, 3689.51, 34.2671}
+}
 
 -- vehicle tracking configuration
 cfg.trackveh = {
