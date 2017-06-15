@@ -10,15 +10,16 @@ AutoStartResources:
     - baseevents
     - rconlog
     - hardcap # prevents the game from breaking
+    - fivem
 #    - scoreboard
-    - vrp
-    - bcrp
-    - radar
-    - speedometer
+#    - vrp
+#    - bcrp
+#    - radar
+#    - speedometer
 #    - emotes
-    - LSPD
-    - Sheriff
-    - lux_vehcontrol
+#    - LSPD
+#    - Sheriff
+#    - lux_vehcontrol
 
 # do change
 RconPassword: wtf231
