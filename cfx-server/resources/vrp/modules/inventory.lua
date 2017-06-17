@@ -3,11 +3,6 @@ local cfg = require("resources/vrp/cfg/inventory")
 
 -- this module define the player inventory (lost after respawn, as wallet)
 
--- Menu events in this module:
--- VRP:buildInventoryMenu
--- vRP:buildInventoryItemMenu
--- (you can get the exact Item name from the Menu data passed to the event)
-
 vRP.items = {}
 
 -- define an inventory item (call this at server start)
@@ -90,6 +85,10 @@ end
 
 function vRP.getInventoryItemDefinition(idname)
   return vRP.items[idname]
+end
+
+function vRP.getInventoryItemDefinitions()
+  return vRP.items
 end
 
 -- return item name or idname if not found
@@ -208,7 +207,7 @@ function vRP.openInventory(source)
             end
 
             -- open menu
-            vRP.constructMenu(source,submenudata,"vRP:buildInventoryItemMenu")
+            vRP.openMenu(source,submenudata)
           end
         end
       end
@@ -223,7 +222,7 @@ function vRP.openInventory(source)
       end
 
       -- open menu
-      vRP.constructMenu(source,menudata,"vRP:buildInventoryMenu")
+      vRP.openMenu(source,menudata)
     end
   end
 end

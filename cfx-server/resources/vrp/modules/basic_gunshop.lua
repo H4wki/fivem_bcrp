@@ -8,9 +8,6 @@ local gunshop_types = cfg.gunshop_types
 
 local gunshop_menus = {}
 
--- Menu events in this module:
--- vRP:buildGunshopMenu
-
 -- build gunshop menus
 for gtype,weapons in pairs(gunshop_types) do
   local gunshop_menu = {
@@ -84,7 +81,7 @@ local function build_client_gunshops(source)
         local function gunshop_enter()
           local user_id = vRP.getUserId(source)
           if user_id ~= nil and (gcfg.permission == nil or vRP.hasPermission(user_id,gcfg.permission)) then
-            vRP.constructMenu(source,menu,"vRP:buildGunshopMenu") 
+            vRP.openMenu(source,menu) 
           end
         end
 

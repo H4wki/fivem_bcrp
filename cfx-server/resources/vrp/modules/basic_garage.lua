@@ -25,14 +25,6 @@ local lang = vRP.lang
 
 local garages = cfg.garages
 
---[[Menu events in this module:
-vRP:buildGarageMenu
-vRP:buildGarageOwnedMenu
-vRP:buildGarageBuyMenu
-vRP:buildGarageSellMenu
-vRP:buildGarageRentMenu
-]]
-
 -- garage menus
 
 local garage_menus = {}
@@ -60,7 +52,7 @@ for group,vehicles in pairs(vehicle_groups) do
       local kitems = {}
       local submenu = {name=lang.garage.title({lang.garage.owned.title()}), css={top="75px",header_color="rgba(255,125,0,0.75)"}}
       submenu.onclose = function()
-        vRP.constructMenu(player,menu,"vRP:buildGarageMenu")
+        vRP.openMenu(player,menu)
       end
 
       local choose = function(player, choice)
@@ -94,7 +86,7 @@ for group,vehicles in pairs(vehicle_groups) do
         end
       end
 
-      vRP.constructMenu(player,submenu,"vRP:buildGarageOwnedMenu")
+      vRP.openMenu(player,submenu)
     end
   end,lang.garage.owned.description()}
 
@@ -106,7 +98,7 @@ for group,vehicles in pairs(vehicle_groups) do
       local kitems = {}
       local submenu = {name=lang.garage.title({lang.garage.buy.title()}), css={top="75px",header_color="rgba(255,125,0,0.75)"}}
       submenu.onclose = function()
-        vRP.constructMenu(player,menu,"vRP:buildGarageMenu")
+        vRP.openMenu(player,menu)
       end
 
       local choose = function(player, choice)
@@ -143,7 +135,7 @@ for group,vehicles in pairs(vehicle_groups) do
         end
       end
 
-      vRP.constructMenu(player,submenu,"vRP:buildGarageBuyMenu")
+      vRP.openMenu(player,submenu)
     end
   end,lang.garage.buy.description()}
 
@@ -155,7 +147,7 @@ for group,vehicles in pairs(vehicle_groups) do
       local kitems = {}
       local submenu = {name=lang.garage.title({lang.garage.sell.title()}), css={top="75px",header_color="rgba(255,125,0,0.75)"}}
       submenu.onclose = function()
-        vRP.constructMenu(player,menu,"vRP:buildGarageMenu")
+        vRP.openMenu(player,menu)
       end
 
       local choose = function(player, choice)
@@ -204,7 +196,7 @@ for group,vehicles in pairs(vehicle_groups) do
         end
       end
 
-      vRP.constructMenu(player,submenu,"vRP:buildGarageSellMenu")
+      vRP.openMenu(player,submenu)
     end
   end,lang.garage.sell.description()}
 
@@ -221,7 +213,7 @@ for group,vehicles in pairs(vehicle_groups) do
       local kitems = {}
       local submenu = {name=lang.garage.title({lang.garage.rent.title()}), css={top="75px",header_color="rgba(255,125,0,0.75)"}}
       submenu.onclose = function()
-        vRP.constructMenu(player,menu,"vRP:buildGarageMenu")
+        vRP.openMenu(player,menu)
       end
 
       local choose = function(player, choice)
@@ -266,7 +258,7 @@ for group,vehicles in pairs(vehicle_groups) do
         end
       end
 
-      vRP.constructMenu(player,submenu,"vRP:buildGarageRentMenu")
+      vRP.openMenu(player,submenu)
     end
   end,lang.garage.rent.description()}
 
@@ -291,7 +283,7 @@ local function build_client_garages(source)
           if user_id ~= nil and (gcfg.permission == nil or vRP.hasPermission(user_id,gcfg.permission)) then
             local menu = garage_menus[gtype]
             if menu then
-              vRP.constructMenu(player,menu,"vRP:buildGarageMenu")
+              vRP.openMenu(player,menu)
             end
           end
         end
@@ -372,7 +364,7 @@ local function ch_vehicle(player,choice)
           menu[k] = {function(player,choice) v[1](user_id,player,vtype,name) end, v[2]}
         end
 
-        vRP.constructMenu(player,menu,"vRP:buildVehicleMenu")
+        vRP.openMenu(player,menu)
       else
         vRPclient.notify(player,{lang.vehicle.no_owned_near()})
       end

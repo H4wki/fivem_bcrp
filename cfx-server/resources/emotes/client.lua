@@ -220,14 +220,3 @@ function InitMenu()
 	Menu.addButton("Drink", "TriggerEvent", emotes["/drink"].event)
 	Menu.addButton("Cancel emote", "TriggerEvent", emotes["/cancelemote"].event)
 end
-
-Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(0)
-		if IsControlJustPressed(1, 32) then -- INPUT_MOVE_UP_ONLY
-			ClearPedTasks(ped);
-			playing_emote = false
-		end
-		Menu.renderGUI()
-	end
-end)

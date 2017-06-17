@@ -3,9 +3,6 @@
 local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/cloakrooms")
 
--- Menu events in this module:
--- vRP:buildCloacroomMenu
-
 -- build cloakroom menus
 
 local menus = {}
@@ -115,7 +112,7 @@ local function build_client_points(source)
             end
           end
 
-          vRP.constructMenu(source,menu,"vRP:buildCloakroomMenu")
+          vRP.openMenu(source,menu)
         end
       end
 

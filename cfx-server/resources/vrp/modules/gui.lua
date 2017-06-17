@@ -2,15 +2,11 @@ local Tools = require("resources/vrp/lib/Tools")
 
 local cfg = require("resources/vrp/cfg/gui")
 
--- Menu events in this module:
--- vRP:buildMainMenu
-
 -- MENU
 
 local menu_ids = Tools.newIDGenerator()
 local client_menus = {}
 local rclient_menus = {}
-local is_menu_opened = false
 
 -- open dynamic menu to client
 -- menudef: .name and choices as key/{callback,description} (optional element html description) 
@@ -40,14 +36,11 @@ function vRP.openMenu(source,menudef)
 
   -- openmenu
   vRPclient.openMenuData(source,{menudata})
-  
-  is_menu_opened = true
 end
 
 -- force close player menu
 function vRP.closeMenu(source)
   vRPclient.closeMenu(source,{})
-  is_menu_opened = false
 end
 
 -- PROMPT
@@ -86,58 +79,28 @@ function vRP.request(source,text,time,cb_ok)
   end)
 end
 
--- MENU GENERATOR
+-- MAIN MENU
 
-local menu_builds = {}
+local main_menu_builds = {}
 
---any resource in need of a menu calls this function instead of vRP.openMenu
+-- open the player main menu
+function vRP.openMainMenu(source)
+  local menudata = {name="Main menu",css={top="75px",header_color="rgba(0,125,255,0.75)"}}
+  main_menu_builds[source] = menudata
 
-function vRP.constructMenu(source, menudata, event, ...) 
-  menu_builds[source] = menudata
-
-  TriggerEvent(event,source, {...}) -- all resources can add choices to the menu via argument event handlers
+  TriggerEvent("vRP:buildMainMenu",source) -- all resources can add choices to the menu using vRP.buildMainMenu(player,choices)
 
   vRP.openMenu(source,menudata) -- open the generated menu
 end
 
--- called inside a menu construction event to build the menu
-function vRP.buildMenu(source,choices)
-  local menudata = menu_builds[source]
+-- called inside a vRP:buildMainMenu event to build the player main menu (to add choices)
+function vRP.buildMainMenu(source,choices)
+  local menudata = main_menu_builds[source]
   if menudata ~= nil then
     for k,v in pairs(choices) do
       menudata[k] = v
     end
   end
-end
-
--- MAIN MENU deprecated interface, for backward compatibility
-
---local main_menu_builds = {}
-
--- open the player main menu
-function vRP.openMainMenu(source)
-  local menudata = {name="Main menu",css={top="75px",header_color="rgba(0,125,255,0.75)"}}
-  vRP.constructMenu(source,menudata,"vRP:buildMainMenu")
-  --[[main_menu_builds[source] = menudata
-
-  TriggerEvent("vRP:buildMainMenu",source) -- all resources can add choices to the menu using vRP.buildMainMenu(player,choices)
-
-  vRP.openMenu(source,menudata) -- open the generated menu]]--
-end
-
--- called inside a vRP:buildMainMenu event to build the player main menu (to add choices)
-function vRP.buildMainMenu(source,choices)
-  vRP.buildMenu(source,choices)
-  --[[local menudata = main_menu_builds[source]
-  if menudata ~= nil then
-    for k,v in pairs(choices) do
-      menudata[k] = v
-    end
-  end]]--
-end
-
-function vRP.isMenuOpened()
-  return is_menu_opened
 end
 
 -- SERVER TUNNEL API
@@ -154,8 +117,6 @@ function tvRP.closeMenu(id)
     menu_ids:free(id)
     client_menus[id] = nil
     rclient_menus[source] = nil
-    
-    is_menu_opened = false
   end
 end
 
@@ -202,9 +163,6 @@ function tvRP.openMainMenu()
   vRP.openMainMenu(source)
 end
 
-function tvRP.isMenuOpened()
-  return vRP.isMenuOpened()
-end
 
 -- STATIC MENUS
 local static_menu_choices = {}

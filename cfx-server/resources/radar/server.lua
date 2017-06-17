@@ -1,8 +1,6 @@
-
-TriggerEvent("es:addGroup", "police", "user", function(group) end)
-
-TriggerEvent('es:addGroupCommand', 'radar', "police", function(source, args, user)
-	TriggerClientEvent('drifter:radarToggle',source)
-end, function(source, args, user)
-	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
+AddEventHandler('chatMessage', function(player, playerName, message)
+    if message:sub(1, 6) == '/radar' then
+        TriggerClientEvent('drifter:radarToggle',source)
+        CancelEvent()
+    end
 end)

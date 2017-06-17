@@ -6,14 +6,6 @@ local cfg = require("resources/vrp/cfg/phone")
 local htmlEntities = require("resources/vrp/lib/htmlEntities")
 local services = cfg.services
 
---[[Menu events in this module:
-vRP:buildPhoneMenu
-vRP:buildPhoneDirectoryMenu
-vRP:buildPhoneContactMenu
-vRP:buildPhoneSMSMenu
-vRP:buildPhoneServiceMenu
-]]
-
 -- api
 
 -- Send a service alert to all service listeners
@@ -219,7 +211,7 @@ local function ch_directory(player,choice)
       emenu.onclose = function() ch_directory(player,lang.phone.directory.title()) end 
 
       -- open mnu
-      vRP.constructMenu(player, emenu, "vRP:buildPhoneContactMenu")
+      vRP.openMenu(player, emenu)
     end
 
     menu[lang.phone.directory.add.title()] = {ch_add}
@@ -232,7 +224,7 @@ local function ch_directory(player,choice)
     -- menu.onclose = function(player) vRP.openMenu(player, phone_menu) end
 
     -- open menu
-    vRP.constructMenu(player,menu,"vRP:buildPhoneDirectoryMenu")
+    vRP.openMenu(player,menu)
   end
 end
 
@@ -261,10 +253,10 @@ local function ch_sms(player, choice)
     end
 
     -- nest menu
-    menu.onclose = function(player) vRP.constructMenu(player,phone_menu,"vRP:buildPhoneMenu") end
+    menu.onclose = function(player) vRP.openMenu(player, phone_menu) end
 
     -- open menu
-    vRP.constructMenu(player,menu,"vRP:buildPhoneSMSMenu")
+    vRP.openMenu(player,menu)
   end
 end
 
@@ -272,7 +264,7 @@ end
 local service_menu = {name=lang.phone.service.title(),css={top="75px",header_color="rgba(0,125,255,0.75)"}}
 
 -- nest menu
-service_menu.onclose = function(player) vRP.constructMenu(player,phone_menu,"vRP:buildPhoneMenu") end
+service_menu.onclose = function(player) vRP.openMenu(player, phone_menu) end
 
 local function ch_service_alert(player,choice) -- alert a service
   local service = services[choice]
@@ -291,7 +283,7 @@ for k,v in pairs(services) do
 end
 
 local function ch_service(player, choice)
-  vRP.constructMenu(player,service_menu,"vRP:buildPhoneServiceMenu")
+  vRP.openMenu(player,service_menu)
 end
 
 phone_menu[lang.phone.directory.title()] = {ch_directory,lang.phone.directory.description()}
@@ -302,7 +294,7 @@ phone_menu[lang.phone.service.title()] = {ch_service,lang.phone.service.descript
 
 AddEventHandler("vRP:buildMainMenu",function(player) 
   local choices = {}
-  choices[lang.phone.title()] = {function() vRP.constructMenu(player,phone_menu,"vRP:buildPhoneMenu") end}
+  choices[lang.phone.title()] = {function() vRP.openMenu(player,phone_menu) end}
 
   local user_id = vRP.getUserId(player)
   if user_id ~= nil and vRP.hasPermission(user_id, "player.phone") then

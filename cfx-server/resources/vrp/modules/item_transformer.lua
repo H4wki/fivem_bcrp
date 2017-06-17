@@ -8,10 +8,6 @@ local cfg = require("resources/vrp/cfg/item_transformers")
 local cfg_inventory = require("resources/vrp/cfg/inventory")
 local lang = vRP.lang
 
--- Menu events in this module:
--- vRP:buildTransformerMenu
--- vRP:buildInformerMenu
-
 -- api
 
 local transformers = {}
@@ -149,7 +145,7 @@ function vRP.setItemTransformer(name,itemtr)
   tr.enter = function(player,area)
     local user_id = vRP.getUserId(player)
     if user_id ~= nil and (itemtr.permission == nil or vRP.hasPermission(user_id,itemtr.permission)) then
-      vRP.constructMenu(player, tr.menu, "vRP:buildTransformerMenu") -- open menu
+      vRP.openMenu(player, tr.menu) -- open menu
     end
   end
 
@@ -309,7 +305,7 @@ end
 local function informer_enter()
   local user_id = vRP.getUserId(source)
   if user_id ~= nil then
-    vRP.constructMenu(source,informer_menu,"vRP:buildInformerMenu") 
+    vRP.openMenu(source,informer_menu) 
   end
 end
 

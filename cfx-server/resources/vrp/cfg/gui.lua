@@ -21,7 +21,7 @@ body{
 -- list of static menu types (map of name => {.title,.blipid,.blipcolor,.permission (optional)})
 -- static menus are menu with choices defined by vRP.addStaticMenuChoices(name, choices)
 cfg.static_menu_types = {
-  ["missions"] = {
+  ["missions"] = { -- example of a mission menu that can be filled by other resources
     title = "Missions",
     blipid = 205, 
     blipcolor = 5
@@ -34,34 +34,3 @@ cfg.static_menus = {
 }
 
 return cfg
-
---[[This is the full list of Menu building events available from vRP core modules:
-vRP:buildMainMenu
-vRP:buildATMMenu
-vRP:buildGarageMenu
-vRP:buildGarageOwnedMenu
-vRP:buildGarageBuyMenu
-vRP:buildGarageRentMenu
-vRP:buildGunshopMenu
-vRP:buildMarketMenu (you can get the exact Market name from the Menu data passed to the event)
-vRP:buildPhoneMenu
-vRP:buildPhoneDirectoryMenu
-vRP:buildPhoneContactMenu
-vRP:buildPhoneSMSMenu
-vRP:buildPhoneServiceMenu
-vRP:buildSkinshopMenu
-vRP:buildBusinessDirectoryMenu
-vRP:buildBusinessMenu
-vRP:buildCloacroomMenu
-vRP:buildEmoteMenu
-vRP:buildGroupMenu
-vRP:buildHouseMenu
-vRP:buildHouseEnterMenu
-vRP:buildIdentityMenu
-VRP:buildInventoryMenu
-vRP:buildInventoryItemMenu (you can get the exact Item name from the Menu data passed to the event)
-vRP:buildTransformerMenu
-vRP:buildInformerMenu
-vRP:buildPoliceMenu
-vRP:buildPoliceFineMenu
-]]--

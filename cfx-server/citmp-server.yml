@@ -6,19 +6,20 @@ PreParseResources:
 AutoStartResources:
     - chat
     - spawnmanager
-    - fivem-map-skater
+    - San_Andreas
     - baseevents
     - rconlog
     - hardcap # prevents the game from breaking
     - fivem
-#    - scoreboard
-#    - vrp
-#    - bcrp
-#    - radar
-#    - speedometer
+    - vrp
+    - bcrp
+    - radar
+    - speedo
+    - frfuel
 #    - emotes
-#    - LSPD
-#    - Sheriff
+    - LSPD
+    - Sheriff
+    - timesync
 #    - lux_vehcontrol
 
 # do change
@@ -27,7 +28,7 @@ RconPassword: wtf231
 # configure this, please
 Hostname: Boonie Crew RP
 
-ScriptDebug: true
+ScriptDebug: false
 
 DebugLog: true
 

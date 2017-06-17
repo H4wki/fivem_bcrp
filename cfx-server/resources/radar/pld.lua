@@ -51,7 +51,7 @@ Citizen.CreateThread(function()
 						local x,y,z = World3dToScreen2d(pos.x, pos.y, pos.z)
 
 						SetTextFont(11)
-						SetTextScale(0.0, 0.40)
+						SetTextScale(0.0, 0.30)
 						SetTextColour(255, 255, 255, 255);
 						SetTextDropShadow(5, 0, 78, 255, 255);
 						SetTextEdge(0, 0, 0, 0, 0);
@@ -67,7 +67,7 @@ Citizen.CreateThread(function()
 								x,y,z = World3dToScreen2d(pos.x, pos.y, pos.z)
 
 								SetTextFont(11)
-								SetTextScale(0.0, 0.40)
+								SetTextScale(0.0, 0.30)
 								SetTextColour(255, 255, 255, 255);
 								SetTextDropShadow(5, 0, 78, 255, 255);
 								SetTextEdge(0, 0, 0, 0, 0);

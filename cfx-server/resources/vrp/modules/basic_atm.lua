@@ -5,9 +5,6 @@ local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/atms")
 local atms = cfg.atms
 
--- Menu events in this module:
--- vRP:buildATMMenu
-
 local function play_atm_enter(player)
   vRPclient.playAnim(player,{false,{{"amb@prop_human_atm@male@enter","enter"},{"amb@prop_human_atm@male@idle_a","idle_a"}},false})
 end
@@ -73,8 +70,8 @@ atm_menu[lang.atm.withdraw.title()] = {atm_choice_withdraw,lang.atm.withdraw.des
 local function atm_enter()
   local user_id = vRP.getUserId(source)
   if user_id ~= nil then
-	atm_menu[lang.atm.info.title()] = {function()end,lang.atm.info.bank({vRP.getBankMoney(user_id)})}
-    vRP.constructMenu(source,atm_menu,"vRP:buildATMMenu") 
+    atm_menu[lang.atm.info.title()] = {function()end,lang.atm.info.bank({vRP.getBankMoney(user_id)})}
+    vRP.openMenu(source,atm_menu) 
   end
 end
 

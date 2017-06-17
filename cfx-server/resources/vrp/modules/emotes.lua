@@ -8,9 +8,6 @@ local emotes = cfg.emotes
 
 local menu = {name=lang.emotes.title(),css={top="75px",header_color="rgba(0,125,255,0.75)"}}
 
--- Menu events in this module
--- vRP:buildEmoteMenu
-
 -- clear current emotes
 menu[lang.emotes.clear.title()] = {function(player,choice) 
   vRPclient.stopAnim(player,{true}) -- upper
@@ -33,6 +30,6 @@ end
 
 AddEventHandler("vRP:buildMainMenu",function(player) 
   local choices = {}
-  choices[lang.emotes.title()] = {function() vRP.constructMenu(player,menu,"vRP:buildEmoteMenu") end}
+  choices[lang.emotes.title()] = {function() vRP.openMenu(player,menu) end}
   vRP.buildMainMenu(player,choices)
 end)

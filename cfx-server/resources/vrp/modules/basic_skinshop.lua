@@ -4,9 +4,6 @@ local cfg = require("resources/vrp/cfg/skinshops")
 local lang = vRP.lang
 local skinshops = cfg.skinshops
 
--- Menu events in this module:
--- vRP:buildSkinshopMenu
-
 -- parse part key (a ped part or a prop part)
 -- return is_proppart, index
 local function parse_part(key)
@@ -134,7 +131,7 @@ function vRP.openSkinshop(source,parts)
       end
 
       -- open menu
-      vRP.constructMenu(source,menudata,"vRP:buildSkinshopMenu")
+      vRP.openMenu(source,menudata)
     end)
   end
 end

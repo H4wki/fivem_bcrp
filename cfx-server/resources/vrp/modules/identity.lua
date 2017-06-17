@@ -3,9 +3,6 @@ local htmlEntities = require("resources/vrp/lib/htmlEntities")
 local cfg = require("resources/vrp/cfg/identity")
 local lang = vRP.lang
 
--- Menu events in this module:
--- vRP:buildIdentityMenu
-
 -- this module describe the identity system
 
 -- init sql
@@ -200,7 +197,7 @@ cityhall_menu[lang.cityhall.identity.title()] = {ch_identity,lang.cityhall.ident
 local function cityhall_enter()
   local user_id = vRP.getUserId(source)
   if user_id ~= nil then
-    vRP.constructMenu(source,cityhall_menu,"vRP:buildIdentityMenu")
+    vRP.openMenu(source,cityhall_menu) 
   end
 end
 

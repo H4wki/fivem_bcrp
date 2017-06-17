@@ -11,9 +11,6 @@ local groups = cfg.groups
 local users = cfg.users
 local selectors = cfg.selectors
 
--- Menu events in this module:
--- vRP:buildGroupMenu
-
 -- get groups keys of a connected user
 function vRP.getUserGroups(user_id)
   local data = vRP.getUserDataTable(user_id)
@@ -181,7 +178,7 @@ local function build_client_selectors(source)
         local function selector_enter()
           local user_id = vRP.getUserId(source)
           if user_id ~= nil and (gcfg.permission == nil or vRP.hasPermission(user_id,gcfg.permission)) then
-            vRP.constructMenu(source,menu,"vRP:buildGroupMenu") 
+            vRP.openMenu(source,menu) 
           end
         end
 

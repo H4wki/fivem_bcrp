@@ -8,9 +8,6 @@ local markets = cfg.markets
 
 local market_menus = {}
 
---[[Menu events in this module:
--- vRP:buildMarketMenu
--- (you can get the exact Market name from the Menu data passed to the event)
 
 -- build market menus
 local function build_market_menus()
@@ -92,7 +89,7 @@ local function build_client_markets(source)
         local function market_enter()
           local user_id = vRP.getUserId(source)
           if user_id ~= nil and (gcfg.permission == nil or vRP.hasPermission(user_id,gcfg.permission)) then
-            vRP.constructMenu(source,menu,"vRP:buildMarketMenu") 
+            vRP.openMenu(source,menu) 
           end
         end
 

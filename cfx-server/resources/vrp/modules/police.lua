@@ -3,11 +3,6 @@
 local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/police")
 
---[[Menu events in this module:
-vRP:buildPoliceMenu
-vRP:buildPoliceFineMenu
-]]
-
 -- police records
 
 -- insert a police record for a specific user
@@ -156,7 +151,7 @@ end
 local function pc_enter(source,area)
   local user_id = vRP.getUserId(source)
   if user_id ~= nil and vRP.hasPermission(user_id,"police.pc") then
-    vRP.constructMenu(source,menu_pc,"vRP:buildPolicePCMenu")
+    vRP.openMenu(source,menu_pc)
   end
 end
 
@@ -462,7 +457,7 @@ local choice_fine = {function(player, choice)
         end
 
         -- open menu
-        vRP.constructMenu(player, menu,"vRP:buildPoliceFineMenu")
+        vRP.openMenu(player, menu)
       else
         vRPclient.notify(player,{lang.common.no_player_near()})
       end
@@ -517,10 +512,10 @@ end)
 
 local function build_client_points(source)
   -- PC
-  for k,v in pairs(cfg.pc) do
+  for k,v in pairs(cfg.pcs) do
     local x,y,z = table.unpack(v)
     vRPclient.addMarker(source,{x,y,z-1,0.7,0.7,0.5,0,125,255,125,150})
-    vRP.setArea(source,"vRP:police:pc"..k,x,y,z,1,1.5,pc_enter,pc_leave)
+    vRP.setArea(source,"vRP:police:pc",x,y,z,1,1.5,pc_enter,pc_leave)
   end
 end
 
