@@ -78,7 +78,7 @@ function Tunnel.bindInterface(name,interface)
     local delayed = false
 
     if Debug.active then
-      Debug.pbegin("tunnelreq#"..rid.."_"..name..":"..member.." "..json.encode(args))
+      Debug.pbegin("tunnelreq#"..rid.."_"..name..":"..member.." "..json.encode(Debug.safeTableCopy(args)))
     end
 
     local f = interface[member]

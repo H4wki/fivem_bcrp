@@ -14,12 +14,13 @@ AutoStartResources:
     - vrp
     - bcrp
     - radar
-    - speedo
-    - frfuel
+    - speedometer
+    - drf_fuel
 #    - emotes
     - LSPD
     - Sheriff
     - timesync
+    - discord
 #    - lux_vehcontrol
 
 # do change

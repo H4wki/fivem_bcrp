@@ -48,7 +48,7 @@ function vRP.nextMissionStep(player)
         if step.onleave then onleave = step.onleave end
 
         -- display
-        vRPclient.setDivContent(source,{"mission",lang.mission.display({tmpdata.mission_data.name,tmpdata.mission_step-1,#tmpdata.mission_data.steps,step.text})})
+        vRPclient.setDivContent(player,{"mission",lang.mission.display({tmpdata.mission_data.name,tmpdata.mission_step-1,#tmpdata.mission_data.steps,step.text})})
 
         -- blip/route
         vRPclient.setNamedBlip(player, {"vRP:mission", x,y,z, blipid, blipcolor, lang.mission.blip({tmpdata.mission_data.name,tmpdata.mission_step,#tmpdata.mission_data.steps})},function(id)
@@ -91,4 +91,17 @@ function vRP.hasMission(player)
   return false
 end
 
+-- MAIN MENU
+AddEventHandler("vRP:buildMainMenu",function(player)
+  local user_id = vRP.getUserId(player)
+  if user_id ~= nil then
+    local choices = {}
 
+    -- build admin menu
+    choices[lang.mission.cancel.title()] = {function(player,choice)
+      vRP.stopMission(player)
+    end}
+
+    vRP.buildMainMenu(player,choices)
+  end
+end)
