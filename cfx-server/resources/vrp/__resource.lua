@@ -20,8 +20,9 @@ server_scripts{
   "modules/emotes.lua",
   "modules/police.lua",
   "modules/home.lua",
---  "modules/fuel.lua",
+  "modules/home_components.lua",
   "modules/mission.lua",
+  "modules/aptitude.lua",
 
   -- basic implementations
   "modules/basic_phone.lua",
@@ -60,5 +61,6 @@ files{
   "gui/ProgressBar.js",
   "gui/WPrompt.js",
   "gui/RequestManager.js",
+  "gui/AnnounceManager.js",
   "gui/Div.js"
 }

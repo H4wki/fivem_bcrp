@@ -9,7 +9,8 @@ local lang = {
     invalid_name = "~r~Invalid name.",
     not_found = "~r~Not found.",
     request_refused = "~r~Request refused.",
-    wearing_uniform = "~r~Be careful, you are wearing a uniform."
+    wearing_uniform = "~r~Be careful, you are wearing a uniform.",
+    not_allowed = "~r~Not allowed."
   },
   survival = {
     starving = "STARVING",
@@ -131,6 +132,7 @@ local lang = {
     }
   },
   police = {
+    title = "Police",
     wanted = "Wanted Rank {1}",
     not_handcuffed = "~r~Not Handcuffed",
     cloakroom = {
@@ -283,6 +285,12 @@ local lang = {
       prompt = "If needed, enter a message for the service:",
       ask_call = "Received {1} call, take it? <em>{2}</em>",
       taken = "~r~This call is already taken."
+    },
+    announce = {
+      title = "Announce",
+      description = "Post an announce visible to everyone for a few seconds.",
+      item_desc = "{1} $<br /><br/>{2}",
+      prompt = "Announce content (10-1000 chars): "
     }
   },
   emotes = {
@@ -323,6 +331,23 @@ local lang = {
       ejectall = {
         title = "Eject all",
         description = "Eject all home visitors, including you, and close the home."
+      }
+    },
+    wardrobe = {
+      title = "Wardrobe",
+      save = {
+        title = "> Save",
+        prompt = "Save Name:"
+      }
+    },
+    gametable = {
+      title = "Game Table",
+      bet = {
+        title = "Start Bet",
+        description = "Start a bet with players near you, the winner will be randomly selected.",
+        prompt = "Bet amount:",
+        request = "[BET] Do you want to bet $ {1} ?",
+        started = "~g~Bet started."
       }
     }
   },
@@ -422,6 +447,18 @@ local lang = {
     display = "<span class=\"name\">{1}</span> <span class=\"step\">{2}/{3}</span><br /><br />{4}",
     cancel = {
       title = "Cancel mission"
+    }
+  },
+  aptitude = {
+    title = "Aptitudes",
+    description = "Show aptitudes.",
+    lose_exp = "Aptitude ~b~{1}/{2} ~r~-{3} ~s~exp.",
+    earn_exp = "Aptitude ~b~{1}/{2} ~g~+{3} ~s~exp.",
+    level_down = "Aptitude ~b~{1}/{2} ~r~lose level ({3}).",
+    level_up = "Aptitude ~b~{1}/{2} ~g~level up ({3}).",
+    display = {
+      group = "{1}: ",
+      aptitude = "--- {1} | exp {2} | lvl {3} | progress {4}%"
     }
   }
 }

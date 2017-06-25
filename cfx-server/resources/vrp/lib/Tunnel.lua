@@ -126,7 +126,7 @@ function Tunnel.getInterface(name,identifier)
   RegisterServerEvent(name..":"..identifier..":tunnel_res")
   AddEventHandler(name..":"..identifier..":tunnel_res",function(rid,args)
     if Debug.active then
-      Debug.pbegin("tunnelres#"..rid.."_"..name.." "..json.encode(args))
+      Debug.pbegin("tunnelres#"..rid.."_"..name.." "..json.encode(Debug.safeTableCopy(args)))
     end
 
     local callback = callbacks[rid]

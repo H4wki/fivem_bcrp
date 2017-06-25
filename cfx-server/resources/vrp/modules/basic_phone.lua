@@ -5,6 +5,9 @@ local lang = vRP.lang
 local cfg = require("resources/vrp/cfg/phone")
 local htmlEntities = require("resources/vrp/lib/htmlEntities")
 local services = cfg.services
+local announces = cfg.announces
+
+local sanitizes = require("resources/vrp/cfg/sanitizes")
 
 -- api
 
@@ -159,8 +162,8 @@ local function ch_directory(player,choice)
     local ch_add = function(player, choice) -- add to directory
       vRP.prompt(player,lang.phone.directory.add.prompt_number(),"",function(player,phone)
         vRP.prompt(player,lang.phone.directory.add.prompt_name(),"",function(player,name)
-          name = tostring(name)
-          phone = tostring(phone)
+          name = sanitizeString(tostring(name),sanitizes.text[1],sanitizes.text[2])
+          phone = sanitizeString(tostring(phone),sanitizes.text[1],sanitizes.text[2])
           if #name > 0 and #phone > 0 then
             phone_directory[name] = phone -- set entry
             vRPclient.notify(player, {lang.phone.directory.add.added()})
@@ -185,6 +188,7 @@ local function ch_directory(player,choice)
 
       local ch_sendsms = function(player, choice) -- send sms to directory entry
         vRP.prompt(player,lang.phone.directory.sendsms.prompt({cfg.sms_size}),"",function(player,msg)
+          msg = sanitizeString(msg,sanitizes.text[1],sanitizes.text[2])
           if vRP.sendSMS(user_id, phone, msg) then
             vRPclient.notify(player,{lang.phone.directory.sendsms.sent({phone})})
           else
@@ -243,6 +247,7 @@ local function ch_sms(player, choice)
       menu["#"..k.." "..from] = {function(player,choice)
         -- answer to sms
         vRP.prompt(player,lang.phone.directory.sendsms.prompt({cfg.sms_size}),"",function(player,msg)
+          msg = sanitizeString(msg,sanitizes.text[1],sanitizes.text[2])
           if vRP.sendSMS(user_id, phone, msg) then
             vRPclient.notify(player,{lang.phone.directory.sendsms.sent({phone})})
           else
@@ -271,6 +276,7 @@ local function ch_service_alert(player,choice) -- alert a service
   if service then
     vRPclient.getPosition(player,{},function(x,y,z)
       vRP.prompt(player,lang.phone.service.prompt(),"",function(player, msg)
+        msg = sanitizeString(msg,sanitizes.text[1],sanitizes.text[2])
         vRPclient.notify(player,{service.notify}) -- notify player
         vRP.sendServiceAlert(player,choice,x,y,z,msg) -- send service alert (call request)
       end)
@@ -286,9 +292,56 @@ local function ch_service(player, choice)
   vRP.openMenu(player,service_menu)
 end
 
+-- build announce menu
+local announce_menu = {name=lang.phone.announce.title(),css={top="75px",header_color="rgba(0,125,255,0.75)"}}
+
+-- nest menu
+announce_menu.onclose = function(player) vRP.openMenu(player, phone_menu) end
+
+local function ch_announce_alert(player,choice) -- alert a announce
+  local announce = announces[choice]
+  local user_id = vRP.getUserId(player)
+  if announce and user_id ~= nil then
+    if announce.permission == nil or vRP.hasPermission(user_id,announce.permission) then
+      vRP.prompt(player,lang.phone.announce.prompt(),"",function(player, msg)
+        msg = sanitizeString(msg,sanitizes.text[1],sanitizes.text[2])
+        if string.len(msg) > 10 and string.len(msg) < 1000 then
+          if announce.price <= 0 or vRP.tryPayment(user_id, announce.price) then -- try to pay the announce
+            vRPclient.notify(player, {lang.money.paid({announce.price})})
+
+            msg = htmlEntities.encode(msg)
+            msg = string.gsub(msg, "\n", "<br />") -- allow returns
+            
+            -- send announce to all
+            local users = vRP.getUsers()
+            for k,v in pairs(users) do
+              vRPclient.announce(v,{announce.image,msg})
+            end
+          else
+            vRPclient.notify(player, {lang.money.not_enough()})
+          end
+        else
+          vRPclient.notify(player, {lang.common.invalid_value()})
+        end
+      end)
+    else
+      vRPclient.notify(player, {lang.common.not_allowed()})
+    end
+  end
+end
+
+for k,v in pairs(announces) do
+  announce_menu[k] = {ch_announce_alert,lang.phone.announce.item_desc({v.price,v.description or ""})}
+end
+
+local function ch_announce(player, choice)
+  vRP.openMenu(player,announce_menu)
+end
+
 phone_menu[lang.phone.directory.title()] = {ch_directory,lang.phone.directory.description()}
 phone_menu[lang.phone.sms.title()] = {ch_sms,lang.phone.sms.description()}
 phone_menu[lang.phone.service.title()] = {ch_service,lang.phone.service.description()}
+phone_menu[lang.phone.announce.title()] = {ch_announce,lang.phone.announce.description()}
 
 -- add phone menu to main menu
 
