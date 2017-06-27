@@ -8,7 +8,8 @@ local lang = {
     invalid_name = "~r~Nom incorrect.",
     not_found = "~r~Non trouvé.",
     request_refused = "~r~Requête refusée.",
-    wearing_uniform = "~r~Attention, vous portez un uniforme."
+    wearing_uniform = "~r~Attention, vous portez un uniforme.",
+    not_allowed = "~r~Non autorisé."
   },
   survival = {
     starving = "Affamé",
@@ -130,6 +131,7 @@ local lang = {
     }
   },
   police = {
+    title = "Police",
     wanted = "Recherché rang {1}",
     not_handcuffed = "~r~Pas menotté.",
     cloakroom = {
@@ -228,6 +230,10 @@ local lang = {
         fined = "~b~Vous avez mis une amende de ~s~{2} $ pour ~b~{1}.",
         notify_fined = "~b~Vous avez été condamné à une amende de~s~ {2} $ pour~b~ {1}.",
         record = "[Amende] {2} $ pour {1}"
+      },
+      store_weapons = {
+        title = "Ranger ses armes",
+        description = "Ranger ses armes dans son inventaire."
       }
     },
     identity = {
@@ -282,6 +288,12 @@ local lang = {
       prompt = "Si besoin, entrez un message pour le service:",
       ask_call = "Reception d'un appel ({1}), voulez vous le prendre ? <em>{2}</em>",
       taken = "~r~Cet appel est déjà pris."
+    },
+    announce = {
+      title = "Annonce",
+      description = "Envoyer une annonce visible à tous pendant quelques secondes.",
+      item_desc = "{1} $<br /><br/>{2}",
+      prompt = "Contenu de l'annonce (10-1000 caractères): "
     }
   },
   emotes = {
@@ -322,6 +334,23 @@ local lang = {
       ejectall = {
         title = "Expulser",
         description = "Expulse tous les visiteurs, même vous, et ferme le logement."
+      }
+    },
+    wardrobe = {
+      title = "Garde-robe",
+      save = {
+        title = "> Sauvegarder",
+        prompt = "Nom de la sauvegarde:"
+      }
+    },
+    gametable = {
+      title = "Table de jeux",
+      bet = {
+        title = "Commencer un pari",
+        description = "Commencer un pari avec les joueurs à proximité, le gagnant sera choisis aléatoirement.",
+        prompt = "Mise du pari:",
+        request = "[PARI] Voulez vous parier {1} $ ?",
+        started = "~g~Pari commencé."
       }
     }
   },
@@ -421,6 +450,18 @@ local lang = {
     display = "<span class=\"name\">{1}</span> <span class=\"step\">{2}/{3}</span><br /><br />{4}",
     cancel = {
       title = "Abandonner la mission"
+    }
+  },
+  aptitude = {
+    title = "Compétences",
+    description = "Afficher les compétences.",
+    lose_exp = "Compétence ~b~{1}/{2} ~r~-{3} ~s~exp.",
+    earn_exp = "Compétence ~b~{1}/{2} ~g~+{3} ~s~exp.",
+    level_down = "Compétence ~b~{1}/{2} ~r~descend en niveau ({3}).",
+    level_up = "Compétence ~b~{1}/{2} ~g~monte en niveau ({3}).",
+    display = {
+      group = "{1}: ",
+      aptitude = "--- {1} | exp {2} | niv. {3} | progression {4}%"
     }
   }
 }

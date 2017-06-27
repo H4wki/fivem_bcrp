@@ -182,11 +182,11 @@ local lang = {
         description = "Handcuff/unhandcuff nearest player."
       },
       putinveh = {
-        title = "Put In",
+        title = "Put in Vehicle",
         description = "Put the nearest handcuffed player in the nearest vehicle."
       },
       getoutveh = {
-        title = "Remove",
+        title = "Remove from Vehicle",
         description = "Removed handcuffed person from vehicle."
       },
       askid = {
@@ -231,6 +231,10 @@ local lang = {
         fined = "~b~Fined ~s~{2} $ for ~b~{1}.",
         notify_fined = "~b~You have been fined ~s~ {2} $ for ~b~{1}.",
         record = "[Fine] {2} $ for {1}"
+      },
+      store_weapons = {
+        title = "Store Weapons",
+        description = "Store your weapons in your inventory."
       }
     },
     identity = {

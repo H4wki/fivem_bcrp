@@ -38,7 +38,9 @@ cfg.groups = {
   ["user"] = {
     "player.phone",
     "player.calladmin",
-    "police.askid"
+    "police.askid",
+    "police.store_weapons",
+    "police.seizable" -- can be seized
   },
   ["police"] = {
     _config = { 
@@ -59,7 +61,9 @@ cfg.groups = {
     "police.seize.items",
     "police.jail",
     "police.fine",
-    "police.announce"
+    "police.announce",
+    "-police.store_weapons",
+    "-police.seizable" -- negative permission, police can't seize itself, even if another group add the permission
   },
   ["emergency"] = {
     _config = { gtype = "job" },
@@ -100,7 +104,7 @@ cfg.users = {
 
 -- group selectors
 -- _config
---- x,y,z, blipid, blipcolor, permission (optional)
+--- x,y,z, blipid, blipcolor, permissions (optional)
 
 cfg.selectors = {
   ["Employment"] = {

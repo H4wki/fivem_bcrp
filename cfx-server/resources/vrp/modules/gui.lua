@@ -120,7 +120,7 @@ function tvRP.closeMenu(id)
   end
 end
 
-function tvRP.validMenuChoice(id,choice)
+function tvRP.validMenuChoice(id,choice,mod)
   local menu = client_menus[id]
   if menu and menu.source == source then
     -- call choice callback
@@ -128,7 +128,7 @@ function tvRP.validMenuChoice(id,choice)
     if ch then
       local cb = ch[1]
       if cb then
-        cb(source,choice)
+        cb(source,choice,mod)
       end
     end
   end
@@ -206,7 +206,7 @@ local function build_client_static_menus(source)
       if menu and smenu then
         local function smenu_enter()
           local user_id = vRP.getUserId(source)
-          if user_id ~= nil and (smenu.permission == nil or vRP.hasPermission(user_id,smenu.permission)) then
+          if user_id ~= nil and vRP.hasPermissions(user_id,smenu.permissions or {}) then
             vRP.openMenu(source,menu) 
           end
         end

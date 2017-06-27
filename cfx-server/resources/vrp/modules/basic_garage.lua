@@ -280,7 +280,7 @@ local function build_client_garages(source)
         -- enter
         local garage_enter = function(player,area)
           local user_id = vRP.getUserId(source)
-          if user_id ~= nil and (gcfg.permission == nil or vRP.hasPermission(user_id,gcfg.permission)) then
+          if user_id ~= nil and vRP.hasPermissions(user_id,gcfg.permissions or {}) then
             local menu = garage_menus[gtype]
             if menu then
               vRP.openMenu(player,menu)
@@ -418,14 +418,12 @@ local function ch_repair(player,choice)
   local user_id = vRP.getUserId(player)
   if user_id ~= nil then
     -- anim and repair
-    if vRP.tryGetInventoryItem(user_id,"repairkit",1) then
+    if vRP.tryGetInventoryItem(user_id,"repairkit",1,true) then
       vRPclient.playAnim(player,{false,{task="WORLD_HUMAN_WELDING"},false})
       SetTimeout(15000, function()
         vRPclient.fixeNearestVehicle(player,{7})
         vRPclient.stopAnim(player,{false})
       end)
-    else
-      vRPclient.notify(player,{lang.inventory.missing({vRP.getItemName("repairkit"),1})})
     end
   end
 end

@@ -37,7 +37,7 @@ local function build_market_menus()
               if new_weight <= vRP.getInventoryMaxWeight(user_id) then
                 -- payment
                 if vRP.tryPayment(user_id,amount*price) then
-                  vRP.giveInventoryItem(user_id,idname,amount)
+                  vRP.giveInventoryItem(user_id,idname,amount,true)
                   vRPclient.notify(player,{lang.money.paid({amount*price})})
                 else
                   vRPclient.notify(player,{lang.money.not_enough()})
@@ -87,7 +87,7 @@ local function build_client_markets(source)
 
         local function market_enter()
           local user_id = vRP.getUserId(source)
-          if user_id ~= nil and (gcfg.permission == nil or vRP.hasPermission(user_id,gcfg.permission)) then
+          if user_id ~= nil and vRP.hasPermissions(user_id,gcfg.permissions or {}) then
             vRP.openMenu(source,menu) 
           end
         end
