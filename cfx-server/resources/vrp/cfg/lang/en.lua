@@ -3,7 +3,7 @@
 
 local lang = {
   common = {
-    welcome = "Welcome. Use the phone keys to use the menu.~n~last login: {1}",
+    welcome = "Welcome. Use the "M" key to open the menu.~n~last login: {1}",
     no_player_near = "~r~No player near you.",
     invalid_value = "~r~Invalid value.",
     invalid_name = "~r~Invalid name.",
@@ -421,7 +421,7 @@ local lang = {
     }
   },
   gunshop = {
-    title = "AmmuNation ({1})",
+    title = "Guns ({1})",
     prompt_ammo = "Amount of ammo to buy for the {1}:",
     info = "<em>body: </em> {1} $<br /><em>ammo: </em> {2} $/u<br /><br />{3}"
   },
