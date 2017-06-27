@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="FiveM" type="Lua">
-    <CLASSES>
-      <root url="file://D:/fivem-lua-sdk/fivem-lua-sdk-master" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
