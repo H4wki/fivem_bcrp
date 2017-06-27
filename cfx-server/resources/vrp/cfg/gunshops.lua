@@ -9,7 +9,7 @@ local cfg = {}
 -- _config: blipid, blipcolor, permission (optional, only users with the permission will have access to the shop)
 
 cfg.gunshop_types = {
-  ["Ammunation"] = {
+  ["AmmuNation"] = {
     _config = {blipid=156,blipcolor=1},
     ["WEAPON_PISTOL"] = {"Pistol",800,15,""},
     ["WEAPON_COMBATPISTOL"] = {"Combat Pistol",1500,15,""},
