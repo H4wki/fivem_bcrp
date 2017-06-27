@@ -20,7 +20,7 @@ AutoStartResources:
     - LSPD
     - Sheriff
     - timesync
-    - discord
+#    - discord
 #    - lux_vehcontrol
 
 # do change
