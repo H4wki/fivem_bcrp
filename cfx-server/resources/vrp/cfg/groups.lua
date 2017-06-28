@@ -37,6 +37,7 @@ cfg.groups = {
   -- the group user is auto added to all logged players
   ["user"] = {
     "player.phone",
+    "player.paycheck",
     "player.calladmin",
     "police.askid",
     "police.store_weapons",
@@ -62,6 +63,7 @@ cfg.groups = {
     "police.jail",
     "police.fine",
     "police.announce",
+    "police.paycheck",
     "-police.store_weapons",
     "-police.seizable" -- negative permission, police can't seize itself, even if another group add the permission
   },
@@ -69,17 +71,20 @@ cfg.groups = {
     _config = { gtype = "job" },
     "emergency.revive",
     "emergency.shop",
+    "emergency.paycheck",
     "emergency.service"
   },
   ["repair"] = {
     _config = { gtype = "job"},
     "vehicle.repair",
     "vehicle.replace",
-    "repair.service"
+    "repair.service",
+    "repair.paycheck"
   },
   ["taxi"] = {
     _config = { gtype = "job" },
-    "taxi.service"
+    "taxi.service",
+    "taxi.paycheck"
   },
   ["copjob"] = {
     _config = { gtype = "job" },
