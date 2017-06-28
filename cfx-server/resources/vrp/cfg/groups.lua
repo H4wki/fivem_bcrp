@@ -43,7 +43,15 @@ cfg.groups = {
     "police.store_weapons",
     "police.seizable" -- can be seized
   },
-  ["police"] = {
+  ["copjob"] = {
+    _config = { gtype = "job" },
+    "police.whitelist"
+  },
+  ["emsjob"] = {
+    _config = { gtype = "job" },
+    "ems.whitelist"
+  },
+  ["Police"] = {
     _config = { 
       gtype = "job",
       onjoin = function(player) vRPclient.setCop(player,{true}) end,
@@ -67,32 +75,24 @@ cfg.groups = {
     "-police.store_weapons",
     "-police.seizable" -- negative permission, police can't seize itself, even if another group add the permission
   },
-  ["emergency"] = {
+  ["EMS"] = {
     _config = { gtype = "job" },
     "emergency.revive",
     "emergency.shop",
     "emergency.paycheck",
     "emergency.service"
   },
-  ["repair"] = {
+  ["Mechanic"] = {
     _config = { gtype = "job"},
     "vehicle.repair",
     "vehicle.replace",
     "repair.service",
     "repair.paycheck"
   },
-  ["taxi"] = {
+  ["Taxi"] = {
     _config = { gtype = "job" },
     "taxi.service",
     "taxi.paycheck"
-  },
-  ["copjob"] = {
-    _config = { gtype = "job" },
-    "police.whitelist"
-  },
-  ["emsjob"] = {
-    _config = { gtype = "job" },
-    "ems.whitelist"
   },
   ["citizen"] = {
     _config = { gtype = "job" }
@@ -115,7 +115,7 @@ cfg.selectors = {
   ["Employment"] = {
     _config = {x = -268.363739013672, y = -957.255126953125, z = 31.22313880920410, blipid = 351, blipcolor = 47},
     "Taxi",
-    "Repair",
+    "Mechanic",
     "Citizen"
   },
   ["Police Job"] = {
@@ -125,7 +125,7 @@ cfg.selectors = {
   },
   ["EMS Job"] = {
     _config = {x=-498.959716796875,y=-335.715148925781,z=34.5017547607422, blipid = 351, blipcolor= 1, permission="ems.whitelist" },
-    "Emergency",
+    "EMS",
     "Citizen"
   }
 }
