@@ -150,7 +150,7 @@ local lang = {
         prompt = "Enter registration number:"
       },
       closebusiness = {
-        title = "Close business",
+        title = "Close Business",
         description = "Close business of the nearest player.",
         request = "Are you sure to close the business {3} owned by {1} {2} ?",
         closed = "~g~Business closed."
@@ -178,8 +178,8 @@ local lang = {
     },
     menu = {
       handcuff = {
-        title = "Handcuff",
-        description = "Handcuff/unhandcuff nearest player."
+        title = "Cuff",
+        description = "Cuff/Uncuff nearest player."
       },
       putinveh = {
         title = "Put in Vehicle",
@@ -244,7 +244,7 @@ local lang = {
   emergency = {
     menu = {
       revive = {
-        title = "Reanimate",
+        title = "Revive",
         description = "Revive the nearest player.",
         not_in_coma = "~r~Not unconscious."
       }
@@ -268,7 +268,7 @@ local lang = {
         not_sent = "~r~ n°{1} unavailable."
       },
       sendpos = {
-        title = "Send position",
+        title = "Send Position",
       },
       remove = {
         title = "Remove"
@@ -399,7 +399,7 @@ local lang = {
       description = "Detach cargobob."
     },
     lock = {
-      title = "Lock/unlock",
+      title = "Lock/Unlock",
       description = "Lock or unlock the vehicle."
     },
     engine = {
@@ -407,9 +407,9 @@ local lang = {
       description = "Start or stop the engine."
     },
     asktrunk = {
-      title = "Request Trunk Open",
+      title = "Request Trunk Access",
       asked = "~g~Requesting...",
-      request = "You are requested to open the trunk."
+      request = "You have been asked to open the trunk."
     },
     replace = {
       title = "Flip Vehicle",
@@ -450,16 +450,16 @@ local lang = {
     blip = "Mission ({1}) {2}/{3}",
     display = "<span class=\"name\">{1}</span> <span class=\"step\">{2}/{3}</span><br /><br />{4}",
     cancel = {
-      title = "Cancel mission"
+      title = "Cancel Mission"
     }
   },
   aptitude = {
-    title = "Aptitudes",
-    description = "Show aptitudes.",
-    lose_exp = "Aptitude ~b~{1}/{2} ~r~-{3} ~s~exp.",
-    earn_exp = "Aptitude ~b~{1}/{2} ~g~+{3} ~s~exp.",
-    level_down = "Aptitude ~b~{1}/{2} ~r~lose level ({3}).",
-    level_up = "Aptitude ~b~{1}/{2} ~g~level up ({3}).",
+    title = "Skills",
+    description = "Show skills.",
+    lose_exp = "Skill ~b~{1}/{2} ~r~-{3} ~s~exp.",
+    earn_exp = "Skill ~b~{1}/{2} ~g~+{3} ~s~exp.",
+    level_down = "Skill ~b~{1}/{2} ~r~lose level ({3}).",
+    level_up = "Skill ~b~{1}/{2} ~g~level up ({3}).",
     display = {
       group = "{1}: ",
       aptitude = "--- {1} | exp {2} | lvl {3} | progress {4}%"

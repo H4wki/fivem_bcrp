@@ -16,7 +16,7 @@ cfg.gunshop_types = {
     ["WEAPON_PUMPSHOTGUN"] = {"Pump Shotgun",500,70,""},
     ["WEAPON_KNIFE"] = {"Knife",50,0,""}
   },
-  ["Police"] = {
+  ["Police Armory"] = {
     _config = {blipid=156,blipcolor=1,permission="police.cloakroom"},
     ["WEAPON_PISTOL"] = {"Pistol",0,1,""},
     ["WEAPON_COMBATPISTOL"] = {"Combat Pistol",0,1,""},
@@ -38,13 +38,12 @@ cfg.gunshops = {
   {"AmmuNation", -331.624, 6082.46, 31.4548},
   {"AmmuNation", -664.147, -935.119, 21.8292},
   {"AmmuNation", -1320.983, -389.260, 36.483},
-  {"AmmuNation", -1119.48803710938,2697.08666992188,18.5541591644287},
+  {"AmmuNation", -1119.4880,2697.0866,18.5541},
   {"AmmuNation", 2569.62, 294.453, 108.735},
-  {"AmmuNation", -3172.60375976563,1085.74816894531,20.8387603759766},
+  {"AmmuNation", -3172.6037,1085.7481,20.8387},
   {"AmmuNation", 21.70, -1107.41, 29.79},
   {"AmmuNation", 810.15, -2156.88, 29.61},
-  {"Police", 452.353393554688,-980.096984863281,30.6896095275879}
-  
+  {"Police Armory", 452.3533,-980.0969,30.6896}
 }
 
 return cfg
