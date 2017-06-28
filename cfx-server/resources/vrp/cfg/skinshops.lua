@@ -4,6 +4,7 @@ local cfg = {}
 -- define customization parts
 local Skin = {
   ["Face"] = 0,
+  ["Beard"] = 1,
   ["Hair"] = 2,
   ["Hand"] = 3,
   ["Legs"] = 4,
@@ -28,9 +29,14 @@ local Clothing = {
   ["Watches"] = "p6"
 }
 
+local Barber = {
+  ["Beard"] = 1,
+  ["Hair"] = 2
+}
+
 -- changes prices (any change to the character parts add amount to the total price)
-cfg.drawable_change_price = 20
-cfg.texture_change_price = 5
+cfg.drawable_change_price = 0
+cfg.texture_change_price = 0
 
 
 -- skinshops list {parts,x,y,z}
